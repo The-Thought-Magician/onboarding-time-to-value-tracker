@@ -31,6 +31,17 @@ import importsRoutes from './routes/imports.js'
 import teamRoutes from './routes/team.js'
 import billingRoutes from './routes/billing.js'
 
+// Defense in depth: never let an unhandled rejection or async throw outside
+// a request handler take down the whole process (which otherwise causes the
+// platform to restart the service and serve 404s to unrelated requests
+// while it comes back up).
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled promise rejection', reason)
+})
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught exception', err)
+})
+
 const app = new Hono()
 
 const allowedOrigins = [
