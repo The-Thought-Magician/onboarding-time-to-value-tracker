@@ -358,9 +358,12 @@ export default function RiskPage() {
               className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
             >
               <option value="all">All severities</option>
-              {['critical', 'high', 'medium', 'low'].map((s) => (
+              {['critical', 'at_risk', 'watch'].map((s) => (
                 <option key={s} value={s}>
-                  {s[0].toUpperCase() + s.slice(1)}
+                  {s
+                    .split('_')
+                    .map((w) => w[0].toUpperCase() + w.slice(1))
+                    .join(' ')}
                 </option>
               ))}
             </select>
