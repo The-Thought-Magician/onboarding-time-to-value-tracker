@@ -10,6 +10,7 @@ import {
 } from '../db/schema.js'
 import { eq, and, desc } from 'drizzle-orm'
 import { authMiddleware, getUserId } from '../lib/auth.js'
+import { buildStalledRows } from './stall.js'
 
 const router = new Hono()
 
@@ -129,9 +130,7 @@ router.get('/overview', authMiddleware, async (c) => {
 
   // --- Counts / status buckets ---
   let active = 0
-  let stalled = 0
   let completed = 0
-  let arrAtRiskCents = 0
 
   for (const t of allTrackers) {
     const isLive = t.status === 'live' || t.status === 'completed' || !!t.go_live_at
@@ -140,15 +139,14 @@ router.get('/overview', authMiddleware, async (c) => {
       continue
     }
     active += 1
-    const lastActivity = t.last_activity_at ? new Date(t.last_activity_at).getTime() : null
-    const idleDays = lastActivity !== null ? (now - lastActivity) / DAY_MS : null
-    const isStalled = idleDays !== null && idleDays >= stallDays
-    if (isStalled) {
-      stalled += 1
-      const acct = accountById.get(t.account_id)
-      arrAtRiskCents += acct?.arr_cents ?? 0
-    }
   }
+
+  // Stalled-account / ARR-at-risk figures must match the stall-detector table
+  // exactly (same milestone-overdue + inactivity logic), so we reuse the same
+  // computation instead of a separate (and previously divergent) one here.
+  const stalledRows = await buildStalledRows(ws.id)
+  const stalled = stalledRows.length
+  const arrAtRiskCents = stalledRows.reduce((s, r) => s + r.arr_cents, 0)
 
   // --- On-time rate: live trackers that hit go-live on/before target ---
   let onTimeEligible = 0
@@ -182,24 +180,51 @@ router.get('/overview', authMiddleware, async (c) => {
       count: vals.length,
     }))
 
-  // --- Funnel: trackers reaching each milestone position completed ---
+  // --- Funnel: trackers reaching each milestone position completed, plus
+  // the average number of days spent in each stage (started -> completed). ---
   const trackerIds = allTrackers.map((t) => t.id)
+  const trackerById = new Map(allTrackers.map((t) => [t.id, t]))
   const tmRows = trackerIds.length
     ? await db.select().from(tracker_milestones)
     : []
   const relevantTm = tmRows.filter((m) => trackerIds.includes(m.tracker_id))
 
   // Build funnel by milestone name across trackers (started vs completed).
-  const funnelMap = new Map<string, { started: number; completed: number; position: number }>()
+  const funnelMap = new Map<
+    string,
+    { started: number; completed: number; position: number; totalDays: number; daysCount: number }
+  >()
   for (const m of relevantTm) {
     const key = m.name
-    if (!funnelMap.has(key)) funnelMap.set(key, { started: 0, completed: 0, position: m.position })
+    if (!funnelMap.has(key)) {
+      funnelMap.set(key, { started: 0, completed: 0, position: m.position, totalDays: 0, daysCount: 0 })
+    }
     const entry = funnelMap.get(key)!
     if (m.status === 'in_progress' || m.status === 'completed' || m.started_at) entry.started += 1
-    if (m.status === 'completed' || m.completed_at) entry.completed += 1
+    const isCompleted = m.status === 'completed' || !!m.completed_at
+    if (isCompleted) entry.completed += 1
+
+    // Duration spent in this stage: from when the stage started (falling
+    // back to the tracker's own start) to when it was completed.
+    if (m.completed_at) {
+      const tracker = trackerById.get(m.tracker_id)
+      const stageStart = m.started_at ?? tracker?.started_at
+      const dur = daysBetween(stageStart ?? null, m.completed_at)
+      if (dur !== null) {
+        entry.totalDays += dur
+        entry.daysCount += 1
+      }
+    }
   }
   const funnel = [...funnelMap.entries()]
-    .map(([name, v]) => ({ name, position: v.position, started: v.started, completed: v.completed }))
+    .map(([name, v]) => ({
+      name,
+      position: v.position,
+      started: v.started,
+      completed: v.completed,
+      avgDays: v.daysCount > 0 ? Math.round((v.totalDays / v.daysCount) * 10) / 10 : 0,
+      count: v.completed,
+    }))
     .sort((a, b) => a.position - b.position)
 
   return c.json({
@@ -207,6 +232,7 @@ router.get('/overview', authMiddleware, async (c) => {
       medianTtv,
       medianTimeToFirstValue,
       onTimeRate,
+      arrAtRisk: arrAtRiskCents,
       arrAtRiskCents,
       active,
       stalled,

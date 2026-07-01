@@ -74,7 +74,7 @@ interface StalledRow {
   status: string
 }
 
-async function buildStalledRows(workspaceId: string): Promise<StalledRow[]> {
+export async function buildStalledRows(workspaceId: string): Promise<StalledRow[]> {
   const now = new Date()
 
   const [ws] = await db.select().from(workspaces).where(eq(workspaces.id, workspaceId))
