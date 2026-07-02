@@ -142,15 +142,15 @@ export default function NewTrackerPage() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
-        <div className="flex items-center gap-2 text-sm text-slate-500">
-          <Link href="/dashboard/trackers" className="hover:text-teal-300">
+        <div className="flex items-center gap-2 text-sm text-stone-500">
+          <Link href="/dashboard/trackers" className="hover:text-rose-300">
             Trackers
           </Link>
           <span>/</span>
-          <span className="text-slate-300">New</span>
+          <span className="text-stone-300">New</span>
         </div>
-        <h1 className="mt-2 text-2xl font-semibold text-slate-100">Start an onboarding tracker</h1>
-        <p className="mt-1 text-sm text-slate-400">
+        <h1 className="mt-2 text-2xl font-semibold text-stone-100">Start an onboarding tracker</h1>
+        <p className="mt-1 text-sm text-stone-400">
           Pick an account and a journey template. We snapshot the milestones so changes to the template
           never disturb a live onboarding.
         </p>
@@ -165,22 +165,22 @@ export default function NewTrackerPage() {
               disabled={i > step}
               className={`flex items-center gap-2 rounded-full border px-3 py-1 text-xs transition-colors ${
                 i === step
-                  ? 'border-teal-500/40 bg-teal-500/15 text-teal-300'
+                  ? 'border-rose-500/40 bg-rose-500/15 text-rose-300'
                   : i < step
-                    ? 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700'
-                    : 'border-slate-800 bg-slate-900 text-slate-600'
+                    ? 'border-stone-700 bg-stone-800 text-stone-300 hover:bg-stone-700'
+                    : 'border-stone-800 bg-stone-900 text-stone-600'
               }`}
             >
               <span
                 className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] ${
-                  i <= step ? 'bg-teal-500 text-slate-950' : 'bg-slate-800 text-slate-500'
+                  i <= step ? 'bg-rose-500 text-stone-950' : 'bg-stone-800 text-stone-500'
                 }`}
               >
                 {i + 1}
               </span>
               {label}
             </button>
-            {i < STEPS.length - 1 && <span className="text-slate-700">→</span>}
+            {i < STEPS.length - 1 && <span className="text-stone-700">→</span>}
           </li>
         ))}
       </ol>
@@ -197,8 +197,8 @@ export default function NewTrackerPage() {
           {step === 0 && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-slate-200">Choose an account</h2>
-                <Link href="/dashboard/accounts" className="text-xs text-teal-400 hover:text-teal-300">
+                <h2 className="text-sm font-semibold text-stone-200">Choose an account</h2>
+                <Link href="/dashboard/accounts" className="text-xs text-rose-400 hover:text-rose-300">
                   Manage accounts
                 </Link>
               </div>
@@ -222,7 +222,7 @@ export default function NewTrackerPage() {
                   />
                   <div className="max-h-80 space-y-2 overflow-y-auto pr-1">
                     {filteredAccounts.length === 0 && (
-                      <p className="py-4 text-center text-sm text-slate-500">No accounts match.</p>
+                      <p className="py-4 text-center text-sm text-stone-500">No accounts match.</p>
                     )}
                     {filteredAccounts.map((a) => {
                       const selected = a.id === accountId
@@ -233,13 +233,13 @@ export default function NewTrackerPage() {
                           onClick={() => setAccountId(a.id)}
                           className={`flex w-full items-center justify-between rounded-lg border px-4 py-3 text-left transition-colors ${
                             selected
-                              ? 'border-teal-500/50 bg-teal-500/10'
-                              : 'border-slate-800 bg-slate-950/40 hover:border-slate-700'
+                              ? 'border-rose-500/50 bg-rose-500/10'
+                              : 'border-stone-800 bg-stone-950/40 hover:border-stone-700'
                           }`}
                         >
                           <div>
-                            <div className="font-medium text-slate-100">{a.name}</div>
-                            <div className="text-xs text-slate-500">
+                            <div className="font-medium text-stone-100">{a.name}</div>
+                            <div className="text-xs text-stone-500">
                               {a.domain || 'no domain'}
                               {a.segment_name ? ` · ${a.segment_name}` : ''}
                             </div>
@@ -261,8 +261,8 @@ export default function NewTrackerPage() {
           {step === 1 && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-slate-200">Choose a journey template</h2>
-                <Link href="/dashboard/templates" className="text-xs text-teal-400 hover:text-teal-300">
+                <h2 className="text-sm font-semibold text-stone-200">Choose a journey template</h2>
+                <Link href="/dashboard/templates" className="text-xs text-rose-400 hover:text-rose-300">
                   Manage templates
                 </Link>
               </div>
@@ -286,18 +286,18 @@ export default function NewTrackerPage() {
                         onClick={() => setTemplateId(t.id)}
                         className={`flex flex-col rounded-lg border px-4 py-3 text-left transition-colors ${
                           selected
-                            ? 'border-teal-500/50 bg-teal-500/10'
-                            : 'border-slate-800 bg-slate-950/40 hover:border-slate-700'
+                            ? 'border-rose-500/50 bg-rose-500/10'
+                            : 'border-stone-800 bg-stone-950/40 hover:border-stone-700'
                         }`}
                       >
                         <div className="flex items-center justify-between gap-2">
-                          <span className="font-medium text-slate-100">{t.name}</span>
+                          <span className="font-medium text-stone-100">{t.name}</span>
                           {t.is_default && <Badge tone="blue">default</Badge>}
                         </div>
                         {t.description && (
-                          <span className="mt-1 line-clamp-2 text-xs text-slate-500">{t.description}</span>
+                          <span className="mt-1 line-clamp-2 text-xs text-stone-500">{t.description}</span>
                         )}
-                        <span className="mt-2 text-xs text-slate-400">
+                        <span className="mt-2 text-xs text-stone-400">
                           {t.total_target_days != null ? `Target ${t.total_target_days} days` : 'No target set'}
                           {t.version != null ? ` · v${t.version}` : ''}
                         </span>
@@ -312,9 +312,9 @@ export default function NewTrackerPage() {
           {/* Step 2 — Owner & start date */}
           {step === 2 && (
             <div className="space-y-4">
-              <h2 className="text-sm font-semibold text-slate-200">Owner &amp; start date</h2>
+              <h2 className="text-sm font-semibold text-stone-200">Owner &amp; start date</h2>
               <label className="block">
-                <span className="mb-1 block text-xs font-medium text-slate-400">Onboarding manager</span>
+                <span className="mb-1 block text-xs font-medium text-stone-400">Onboarding manager</span>
                 <select className="input" value={managerId} onChange={(e) => setManagerId(e.target.value)}>
                   <option value="">Unassigned</option>
                   {team
@@ -327,20 +327,20 @@ export default function NewTrackerPage() {
                     ))}
                 </select>
                 {team.length === 0 && (
-                  <span className="mt-1 block text-xs text-slate-500">
+                  <span className="mt-1 block text-xs text-stone-500">
                     No team members yet — you can assign one later from the tracker.
                   </span>
                 )}
               </label>
               <label className="block">
-                <span className="mb-1 block text-xs font-medium text-slate-400">Start date</span>
+                <span className="mb-1 block text-xs font-medium text-stone-400">Start date</span>
                 <input
                   className="input"
                   type="date"
                   value={startedAt}
                   onChange={(e) => setStartedAt(e.target.value)}
                 />
-                <span className="mt-1 block text-xs text-slate-500">
+                <span className="mt-1 block text-xs text-stone-500">
                   Time-to-value is measured from this date.
                 </span>
               </label>
@@ -350,8 +350,8 @@ export default function NewTrackerPage() {
           {/* Step 3 — Review */}
           {step === 3 && (
             <div className="space-y-4">
-              <h2 className="text-sm font-semibold text-slate-200">Review &amp; create</h2>
-              <div className="divide-y divide-slate-800 rounded-lg border border-slate-800">
+              <h2 className="text-sm font-semibold text-stone-200">Review &amp; create</h2>
+              <div className="divide-y divide-stone-800 rounded-lg border border-stone-800">
                 <ReviewRow label="Account" value={selectedAccount?.name || '—'} onEdit={() => setStep(0)} />
                 <ReviewRow
                   label="Template"
@@ -439,13 +439,13 @@ function ReviewRow({
   return (
     <div className="flex items-center justify-between px-4 py-3">
       <div>
-        <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
-        <div className="mt-0.5 text-slate-100">
+        <div className="text-xs uppercase tracking-wide text-stone-500">{label}</div>
+        <div className="mt-0.5 text-stone-100">
           {value}
-          {hint && <span className="ml-2 text-xs text-slate-500">{hint}</span>}
+          {hint && <span className="ml-2 text-xs text-stone-500">{hint}</span>}
         </div>
       </div>
-      <button onClick={onEdit} className="text-xs text-teal-400 hover:text-teal-300">
+      <button onClick={onEdit} className="text-xs text-rose-400 hover:text-rose-300">
         Edit
       </button>
     </div>

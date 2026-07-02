@@ -227,8 +227,8 @@ export default function BlockersPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Blockers</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-xl font-semibold text-stone-100">Blockers</h1>
+          <p className="mt-1 text-sm text-stone-400">
             Track what is slowing onboardings and surface systemic friction patterns.
           </p>
         </div>
@@ -263,8 +263,8 @@ export default function BlockersPage() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Friction by Category</h2>
-            <p className="mt-1 text-xs text-slate-500">Where blockers cluster across all onboardings.</p>
+            <h2 className="text-sm font-semibold text-stone-200">Friction by Category</h2>
+            <p className="mt-1 text-xs text-stone-500">Where blockers cluster across all onboardings.</p>
           </CardHeader>
           <CardBody>
             {catBuckets.mapped.length === 0 ? (
@@ -274,15 +274,15 @@ export default function BlockersPage() {
                 {catBuckets.mapped.map((b) => (
                   <div key={b.label} className="space-y-1">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-slate-300">{b.label}</span>
-                      <span className="tabular-nums text-slate-400">
+                      <span className="text-stone-300">{b.label}</span>
+                      <span className="tabular-nums text-stone-400">
                         {b.count}
-                        {b.avgDays ? <span className="text-slate-500"> · {b.avgDays.toFixed(0)}d avg</span> : null}
+                        {b.avgDays ? <span className="text-stone-500"> · {b.avgDays.toFixed(0)}d avg</span> : null}
                       </span>
                     </div>
-                    <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-stone-800">
                       <div
-                        className="h-full rounded-full bg-teal-400"
+                        className="h-full rounded-full bg-rose-400"
                         style={{ width: `${Math.max((b.count / catBuckets.max) * 100, 3)}%` }}
                       />
                     </div>
@@ -295,8 +295,8 @@ export default function BlockersPage() {
 
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Friction by Stage</h2>
-            <p className="mt-1 text-xs text-slate-500">Which journey stages stall most often.</p>
+            <h2 className="text-sm font-semibold text-stone-200">Friction by Stage</h2>
+            <p className="mt-1 text-xs text-stone-500">Which journey stages stall most often.</p>
           </CardHeader>
           <CardBody>
             {stageBuckets.mapped.length === 0 ? (
@@ -306,13 +306,13 @@ export default function BlockersPage() {
                 {stageBuckets.mapped.map((b) => (
                   <div key={b.label} className="space-y-1">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-slate-300">{b.label}</span>
-                      <span className="tabular-nums text-slate-400">
+                      <span className="text-stone-300">{b.label}</span>
+                      <span className="tabular-nums text-stone-400">
                         {b.count}
-                        {b.avgDays ? <span className="text-slate-500"> · {b.avgDays.toFixed(0)}d avg</span> : null}
+                        {b.avgDays ? <span className="text-stone-500"> · {b.avgDays.toFixed(0)}d avg</span> : null}
                       </span>
                     </div>
-                    <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-stone-800">
                       <div
                         className="h-full rounded-full bg-sky-400"
                         style={{ width: `${Math.max((b.count / stageBuckets.max) * 100, 3)}%` }}
@@ -328,18 +328,18 @@ export default function BlockersPage() {
 
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-sm font-semibold text-slate-200">Blocker Log</h2>
+          <h2 className="text-sm font-semibold text-stone-200">Blocker Log</h2>
           <div className="flex flex-wrap items-center gap-2">
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search..."
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
             />
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value as typeof statusFilter)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="open">Open</option>
               <option value="resolved">Resolved</option>
@@ -348,7 +348,7 @@ export default function BlockersPage() {
             <select
               value={severityFilter}
               onChange={(e) => setSeverityFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="all">All severities</option>
               {SEVERITIES.map((s) => (
@@ -360,7 +360,7 @@ export default function BlockersPage() {
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="all">All categories</option>
               {categories.map((c) => (
@@ -404,21 +404,21 @@ export default function BlockersPage() {
                   return (
                     <TR key={b.id}>
                       <TD>
-                        <div className="font-medium text-slate-100">{str(b.title) || 'Untitled blocker'}</div>
+                        <div className="font-medium text-stone-100">{str(b.title) || 'Untitled blocker'}</div>
                         {b.description && (
-                          <div className="mt-0.5 line-clamp-1 max-w-md text-xs text-slate-500">{b.description}</div>
+                          <div className="mt-0.5 line-clamp-1 max-w-md text-xs text-stone-500">{b.description}</div>
                         )}
                       </TD>
                       <TD>
                         {b.severity ? (
                           <Badge tone={sevTone(str(b.severity))}>{str(b.severity)}</Badge>
                         ) : (
-                          <span className="text-slate-600">—</span>
+                          <span className="text-stone-600">—</span>
                         )}
                       </TD>
-                      <TD className="text-slate-400">{str(b.category) || '—'}</TD>
-                      <TD className="text-slate-400">{str(b.owner) || '—'}</TD>
-                      <TD className="text-slate-400">{str(b.account_name) || '—'}</TD>
+                      <TD className="text-stone-400">{str(b.category) || '—'}</TD>
+                      <TD className="text-stone-400">{str(b.owner) || '—'}</TD>
+                      <TD className="text-stone-400">{str(b.account_name) || '—'}</TD>
                       <TD className="text-right tabular-nums">{age !== null ? `${age}d` : '—'}</TD>
                       <TD>
                         <Badge tone={resolved ? 'green' : 'amber'}>{str(b.status) || 'open'}</Badge>
@@ -471,23 +471,23 @@ export default function BlockersPage() {
         <form onSubmit={onCreateCategory} className="space-y-4">
           {catError && <div className="rounded-lg border border-rose-500/40 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">{catError}</div>}
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Name</label>
             <input
               value={catName}
               onChange={(e) => setCatName(e.target.value)}
               placeholder="e.g. Integration / API access"
               autoFocus
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Description</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Description</label>
             <textarea
               value={catDesc}
               onChange={(e) => setCatDesc(e.target.value)}
               rows={3}
               placeholder="Optional — what kinds of blockers belong here"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
             />
           </div>
           <button type="submit" className="hidden" aria-hidden />

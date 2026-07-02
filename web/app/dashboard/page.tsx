@@ -164,8 +164,8 @@ export default function DashboardPage() {
     <div className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-100">Executive Overview</h1>
-          <p className="mt-1 text-sm text-slate-400">Time-to-value health across your onboarding book.</p>
+          <h1 className="text-2xl font-bold tracking-tight text-stone-100">Executive Overview</h1>
+          <p className="mt-1 text-sm text-stone-400">Time-to-value health across your onboarding book.</p>
         </div>
         <div className="flex items-center gap-2">
           <Link href="/dashboard/stall-detector"><Button variant="secondary" size="sm">Stall detector</Button></Link>
@@ -209,10 +209,10 @@ export default function DashboardPage() {
         <Card className="lg:col-span-2">
           <CardHeader className="flex items-center justify-between">
             <div>
-              <h2 className="text-sm font-semibold text-slate-100">Median TTV trend</h2>
-              <p className="text-xs text-slate-500">Lower is better</p>
+              <h2 className="text-sm font-semibold text-stone-100">Median TTV trend</h2>
+              <p className="text-xs text-stone-500">Lower is better</p>
             </div>
-            <Link href="/dashboard/analytics" className="text-xs text-teal-400 hover:text-teal-300">Full analytics →</Link>
+            <Link href="/dashboard/analytics" className="text-xs text-rose-400 hover:text-rose-300">Full analytics →</Link>
           </CardHeader>
           <CardBody>
             {trends.length === 0 ? (
@@ -225,13 +225,13 @@ export default function DashboardPage() {
                     const h = Math.max(4, Math.round((v / maxTrend) * 100))
                     return (
                       <div key={i} className="flex flex-1 flex-col items-center justify-end gap-1">
-                        <span className="text-[10px] tabular-nums text-slate-500">{v ? Math.round(v) : ''}</span>
+                        <span className="text-[10px] tabular-nums text-stone-500">{v ? Math.round(v) : ''}</span>
                         <div
-                          className="w-full rounded-t bg-teal-500/70 transition-all hover:bg-teal-400"
+                          className="w-full rounded-t bg-rose-500/70 transition-all hover:bg-rose-400"
                           style={{ height: `${h}%` }}
                           title={`${t.month ?? ''}: ${Math.round(v)}d`}
                         />
-                        <span className="truncate text-[10px] text-slate-500">{t.month ?? `#${i + 1}`}</span>
+                        <span className="truncate text-[10px] text-stone-500">{t.month ?? `#${i + 1}`}</span>
                       </div>
                     )
                   })}
@@ -245,10 +245,10 @@ export default function DashboardPage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <h2 className="text-sm font-semibold text-slate-100">Alerts</h2>
+              <h2 className="text-sm font-semibold text-stone-100">Alerts</h2>
               {unread.length > 0 && <Badge tone="red">{unread.length}</Badge>}
             </div>
-            <Link href="/dashboard/notifications" className="text-xs text-teal-400 hover:text-teal-300">All →</Link>
+            <Link href="/dashboard/notifications" className="text-xs text-rose-400 hover:text-rose-300">All →</Link>
           </CardHeader>
           <CardBody>
             {recentNotifs.length === 0 ? (
@@ -257,12 +257,12 @@ export default function DashboardPage() {
               <ul className="space-y-3">
                 {recentNotifs.map((n) => {
                   const inner = (
-                    <div className={`rounded-lg border px-3 py-2 ${n.read ? 'border-slate-800 bg-slate-950/30' : 'border-teal-500/30 bg-teal-500/5'}`}>
+                    <div className={`rounded-lg border px-3 py-2 ${n.read ? 'border-stone-800 bg-stone-950/30' : 'border-rose-500/30 bg-rose-500/5'}`}>
                       <div className="flex items-center justify-between gap-2">
-                        <span className="text-sm font-medium text-slate-200">{n.title || n.type || 'Notification'}</span>
-                        <span className="shrink-0 text-[10px] text-slate-500">{fmtAgo(n.created_at)}</span>
+                        <span className="text-sm font-medium text-stone-200">{n.title || n.type || 'Notification'}</span>
+                        <span className="shrink-0 text-[10px] text-stone-500">{fmtAgo(n.created_at)}</span>
                       </div>
-                      {n.body && <p className="mt-0.5 line-clamp-2 text-xs text-slate-400">{n.body}</p>}
+                      {n.body && <p className="mt-0.5 line-clamp-2 text-xs text-stone-400">{n.body}</p>}
                     </div>
                   )
                   return (
@@ -282,10 +282,10 @@ export default function DashboardPage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <div>
-              <h2 className="text-sm font-semibold text-slate-100">Top ARR at risk</h2>
-              <p className="text-xs text-slate-500">Stalled accounts by exposure</p>
+              <h2 className="text-sm font-semibold text-stone-100">Top ARR at risk</h2>
+              <p className="text-xs text-stone-500">Stalled accounts by exposure</p>
             </div>
-            <Link href="/dashboard/stall-detector" className="text-xs text-teal-400 hover:text-teal-300">Detector →</Link>
+            <Link href="/dashboard/stall-detector" className="text-xs text-rose-400 hover:text-rose-300">Detector →</Link>
           </CardHeader>
           <CardBody className="p-0">
             {topStalled.length === 0 ? (
@@ -308,9 +308,9 @@ export default function DashboardPage() {
                     const nameCell = s.account_name || s.name || 'Account'
                     return (
                       <TR key={s.id}>
-                        <TD className="font-medium text-slate-100">
-                          {target ? <Link href={target} className="hover:text-teal-300">{nameCell}</Link> : nameCell}
-                          {s.segment && <div className="text-xs text-slate-500">{s.segment}</div>}
+                        <TD className="font-medium text-stone-100">
+                          {target ? <Link href={target} className="hover:text-rose-300">{nameCell}</Link> : nameCell}
+                          {s.segment && <div className="text-xs text-stone-500">{s.segment}</div>}
                         </TD>
                         <TD className="tabular-nums">{fmtDays(s.days_overdue)}</TD>
                         <TD className="tabular-nums text-rose-300">{fmtMoney(s.arr_at_risk_cents ?? s.arr_cents)}</TD>
@@ -328,10 +328,10 @@ export default function DashboardPage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <div>
-              <h2 className="text-sm font-semibold text-slate-100">Stage funnel</h2>
-              <p className="text-xs text-slate-500">Avg days per stage</p>
+              <h2 className="text-sm font-semibold text-stone-100">Stage funnel</h2>
+              <p className="text-xs text-stone-500">Avg days per stage</p>
             </div>
-            <Link href="/dashboard/analytics" className="text-xs text-teal-400 hover:text-teal-300">Analytics →</Link>
+            <Link href="/dashboard/analytics" className="text-xs text-rose-400 hover:text-rose-300">Analytics →</Link>
           </CardHeader>
           <CardBody>
             {funnel.length === 0 ? (
@@ -344,11 +344,11 @@ export default function DashboardPage() {
                   return (
                     <li key={i}>
                       <div className="mb-1 flex justify-between text-xs">
-                        <span className="text-slate-300">{f.name || f.stage || `Stage ${i + 1}`}</span>
-                        <span className="tabular-nums text-slate-500">{fmtDays(v)}{f.count != null ? ` · ${f.count}` : ''}</span>
+                        <span className="text-stone-300">{f.name || f.stage || `Stage ${i + 1}`}</span>
+                        <span className="tabular-nums text-stone-500">{fmtDays(v)}{f.count != null ? ` · ${f.count}` : ''}</span>
                       </div>
-                      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
-                        <div className="h-full rounded-full bg-teal-500/70" style={{ width: `${w}%` }} />
+                      <div className="h-2 w-full overflow-hidden rounded-full bg-stone-800">
+                        <div className="h-full rounded-full bg-rose-500/70" style={{ width: `${w}%` }} />
                       </div>
                     </li>
                   )
@@ -362,8 +362,8 @@ export default function DashboardPage() {
       {/* TTV percentiles */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-100">Time-to-value distribution</h2>
-          <p className="text-xs text-slate-500">Days across all completed implementations</p>
+          <h2 className="text-sm font-semibold text-stone-100">Time-to-value distribution</h2>
+          <p className="text-xs text-stone-500">Days across all completed implementations</p>
         </CardHeader>
         <CardBody>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -371,16 +371,16 @@ export default function DashboardPage() {
               { label: 'Days to first value', d: ttv?.firstValue },
               { label: 'Days to go-live', d: ttv?.goLive },
             ].map((g) => (
-              <div key={g.label} className="rounded-xl border border-slate-800 bg-slate-950/30 p-4">
+              <div key={g.label} className="rounded-xl border border-stone-800 bg-stone-950/30 p-4">
                 <div className="mb-3 flex items-center justify-between">
-                  <span className="text-sm font-medium text-slate-200">{g.label}</span>
-                  {g.d?.count != null && <span className="text-xs text-slate-500">{g.d.count} samples</span>}
+                  <span className="text-sm font-medium text-stone-200">{g.label}</span>
+                  {g.d?.count != null && <span className="text-xs text-stone-500">{g.d.count} samples</span>}
                 </div>
                 <div className="grid grid-cols-3 gap-3 text-center">
                   {(['p50', 'p75', 'p90'] as const).map((p) => (
                     <div key={p}>
-                      <div className="text-xs uppercase text-slate-500">{p}</div>
-                      <div className="mt-1 text-xl font-semibold tabular-nums text-teal-300">{fmtDays(g.d?.[p] ?? (p === 'p50' ? g.d?.median : undefined))}</div>
+                      <div className="text-xs uppercase text-stone-500">{p}</div>
+                      <div className="mt-1 text-xl font-semibold tabular-nums text-rose-300">{fmtDays(g.d?.[p] ?? (p === 'p50' ? g.d?.median : undefined))}</div>
                     </div>
                   ))}
                 </div>

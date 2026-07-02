@@ -289,8 +289,8 @@ export default function ReportsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Reports</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-xl font-semibold text-stone-100">Reports</h1>
+          <p className="mt-1 text-sm text-stone-400">
             Build reusable report definitions and capture point-in-time snapshots of onboarding metrics.
           </p>
         </div>
@@ -315,13 +315,13 @@ export default function ReportsPage() {
 
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-sm font-semibold text-slate-200">Report Builder</h2>
+          <h2 className="text-sm font-semibold text-stone-200">Report Builder</h2>
           <input
             type="search"
             placeholder="Search reports..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="min-w-[200px] rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+            className="min-w-[200px] rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
           />
         </CardHeader>
         {filteredReports.length === 0 ? (
@@ -350,9 +350,9 @@ export default function ReportsPage() {
                 return (
                   <TR key={r.id}>
                     <TD>
-                      <div className="font-medium text-slate-100">{r.name}</div>
+                      <div className="font-medium text-stone-100">{r.name}</div>
                       {r.filters && Object.keys(r.filters).length > 0 && (
-                        <div className="mt-0.5 text-xs text-slate-500">
+                        <div className="mt-0.5 text-xs text-stone-500">
                           {Object.entries(r.filters)
                             .map(([k, v]) => `${k}: ${String(v)}`)
                             .join(' · ')}
@@ -367,19 +367,19 @@ export default function ReportsPage() {
                           </Badge>
                         ))}
                         {metrics.length > 4 && (
-                          <span className="text-xs text-slate-500">+{metrics.length - 4}</span>
+                          <span className="text-xs text-stone-500">+{metrics.length - 4}</span>
                         )}
-                        {metrics.length === 0 && <span className="text-xs text-slate-600">None</span>}
+                        {metrics.length === 0 && <span className="text-xs text-stone-600">None</span>}
                       </div>
                     </TD>
                     <TD>
                       {r.schedule ? (
                         <Badge tone="blue">{SCHEDULE_LABEL[r.schedule] ?? r.schedule}</Badge>
                       ) : (
-                        <span className="text-xs text-slate-500">Manual</span>
+                        <span className="text-xs text-stone-500">Manual</span>
                       )}
                     </TD>
-                    <TD className="text-xs text-slate-400">{fmtDateTime(r.created_at)}</TD>
+                    <TD className="text-xs text-stone-400">{fmtDateTime(r.created_at)}</TD>
                     <TD className="text-right">
                       <div className="inline-flex gap-2">
                         <Button size="sm" onClick={() => runReport(r)} disabled={busy}>
@@ -403,8 +403,8 @@ export default function ReportsPage() {
 
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Snapshots</h2>
-          <p className="mt-1 text-xs text-slate-500">
+          <h2 className="text-sm font-semibold text-stone-200">Snapshots</h2>
+          <p className="mt-1 text-xs text-stone-500">
             Captured report outputs. Click a snapshot to view its data.
           </p>
         </CardHeader>
@@ -431,18 +431,18 @@ export default function ReportsPage() {
                 <TR key={s.id}>
                   <TD>
                     <button
-                      className="text-left font-medium text-slate-100 hover:text-teal-300"
+                      className="text-left font-medium text-stone-100 hover:text-rose-300"
                       onClick={() => openSnapshot(s)}
                     >
                       {s.title || 'Untitled snapshot'}
                     </button>
                   </TD>
-                  <TD className="text-slate-400">
+                  <TD className="text-stone-400">
                     {s.report_definition_id
                       ? reportById.get(s.report_definition_id)?.name ?? 'Deleted report'
                       : '—'}
                   </TD>
-                  <TD className="text-xs text-slate-400">{fmtDateTime(s.created_at)}</TD>
+                  <TD className="text-xs text-stone-400">{fmtDateTime(s.created_at)}</TD>
                   <TD className="text-right">
                     <Button size="sm" variant="secondary" onClick={() => openSnapshot(s)}>
                       View
@@ -478,16 +478,16 @@ export default function ReportsPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Report name</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Report name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               placeholder="e.g. Weekly TTV Executive Summary"
             />
           </div>
           <div>
-            <label className="mb-2 block text-xs font-medium text-slate-400">
+            <label className="mb-2 block text-xs font-medium text-stone-400">
               Metrics ({form.metrics.length} selected)
             </label>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -500,13 +500,13 @@ export default function ReportsPage() {
                     onClick={() => toggleMetric(m.key)}
                     className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-left text-sm transition-colors ${
                       on
-                        ? 'border-teal-500/60 bg-teal-500/10 text-teal-200'
-                        : 'border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-600'
+                        ? 'border-rose-500/60 bg-rose-500/10 text-rose-200'
+                        : 'border-stone-700 bg-stone-800 text-stone-300 hover:border-stone-600'
                     }`}
                   >
                     <span
                       className={`flex h-4 w-4 items-center justify-center rounded border text-[10px] ${
-                        on ? 'border-teal-400 bg-teal-500 text-slate-950' : 'border-slate-600'
+                        on ? 'border-rose-400 bg-rose-500 text-stone-950' : 'border-stone-600'
                       }`}
                     >
                       {on ? '✓' : ''}
@@ -519,30 +519,30 @@ export default function ReportsPage() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Segment filter (optional)</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Segment filter (optional)</label>
               <input
                 value={form.filterSegment}
                 onChange={(e) => setForm({ ...form, filterSegment: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                 placeholder="Segment ID"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Template filter (optional)</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Template filter (optional)</label>
               <input
                 value={form.filterTemplate}
                 onChange={(e) => setForm({ ...form, filterTemplate: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                 placeholder="Template ID"
               />
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Schedule</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Schedule</label>
             <select
               value={form.schedule}
               onChange={(e) => setForm({ ...form, schedule: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {SCHEDULES.map((s) => (
                 <option key={s.key} value={s.key}>
@@ -552,7 +552,7 @@ export default function ReportsPage() {
             </select>
           </div>
           {editing && (
-            <div className="border-t border-slate-800 pt-3">
+            <div className="border-t border-stone-800 pt-3">
               <Button
                 variant="danger"
                 size="sm"
@@ -581,15 +581,15 @@ export default function ReportsPage() {
         }
       >
         <div className="space-y-4">
-          <div className="text-xs text-slate-500">
+          <div className="text-xs text-stone-500">
             Captured {fmtDateTime(viewSnapshot?.created_at)}
           </div>
           {snapshotLoading ? (
             <PageSpinner label="Loading snapshot..." />
           ) : snapshotRows.length === 0 ? (
-            <p className="text-sm text-slate-400">This snapshot contains no metric data.</p>
+            <p className="text-sm text-stone-400">This snapshot contains no metric data.</p>
           ) : (
-            <div className="overflow-hidden rounded-lg border border-slate-800">
+            <div className="overflow-hidden rounded-lg border border-stone-800">
               <Table>
                 <THead>
                   <TR>
@@ -600,8 +600,8 @@ export default function ReportsPage() {
                 <TBody>
                   {snapshotRows.map((row, i) => (
                     <TR key={i}>
-                      <TD className="capitalize text-slate-200">{row.label}</TD>
-                      <TD className="text-right font-medium tabular-nums text-teal-300">{row.value}</TD>
+                      <TD className="capitalize text-stone-200">{row.label}</TD>
+                      <TD className="text-right font-medium tabular-nums text-rose-300">{row.value}</TD>
                     </TR>
                   ))}
                 </TBody>

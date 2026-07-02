@@ -246,8 +246,8 @@ export default function TasksPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Tasks</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-xl font-semibold text-stone-100">Tasks</h1>
+          <p className="mt-1 text-sm text-stone-400">
             Action items across onboarding implementations.
           </p>
         </div>
@@ -273,10 +273,10 @@ export default function TasksPage() {
 
       <Card>
         <CardBody className="flex flex-wrap items-center gap-3">
-          <div className="inline-flex rounded-lg border border-slate-700 bg-slate-800/60 p-0.5">
+          <div className="inline-flex rounded-lg border border-stone-700 bg-stone-800/60 p-0.5">
             <button
               className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-                view === 'board' ? 'bg-teal-500 text-slate-950' : 'text-slate-300 hover:text-white'
+                view === 'board' ? 'bg-rose-500 text-stone-950' : 'text-stone-300 hover:text-white'
               }`}
               onClick={() => setView('board')}
             >
@@ -284,7 +284,7 @@ export default function TasksPage() {
             </button>
             <button
               className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-                view === 'mine' ? 'bg-teal-500 text-slate-950' : 'text-slate-300 hover:text-white'
+                view === 'mine' ? 'bg-rose-500 text-stone-950' : 'text-stone-300 hover:text-white'
               }`}
               onClick={() => setView('mine')}
             >
@@ -297,13 +297,13 @@ export default function TasksPage() {
             placeholder="Search tasks..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="min-w-[180px] flex-1 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+            className="min-w-[180px] flex-1 rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
           />
 
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value as '' | Status)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+            className="rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
           >
             <option value="">All statuses</option>
             {STATUSES.map((s) => (
@@ -316,7 +316,7 @@ export default function TasksPage() {
           <select
             value={assigneeFilter}
             onChange={(e) => setAssigneeFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+            className="rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
           >
             <option value="">All assignees</option>
             {team.map((m) => (
@@ -355,9 +355,9 @@ export default function TasksPage() {
               {filtered.map((t) => (
                 <TR key={t.id}>
                   <TD>
-                    <div className="font-medium text-slate-100">{t.title}</div>
+                    <div className="font-medium text-stone-100">{t.title}</div>
                     {t.description && (
-                      <div className="mt-0.5 line-clamp-1 text-xs text-slate-500">{t.description}</div>
+                      <div className="mt-0.5 line-clamp-1 text-xs text-stone-500">{t.description}</div>
                     )}
                   </TD>
                   <TD>{t.assignee_id ? teamById.get(t.assignee_id)?.name ?? 'Unknown' : '—'}</TD>
@@ -390,31 +390,31 @@ export default function TasksPage() {
       ) : (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
           {STATUSES.map((col) => (
-            <div key={col} className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/50">
-              <div className="flex items-center justify-between border-b border-slate-800 px-4 py-3">
+            <div key={col} className="flex flex-col rounded-xl border border-stone-800 bg-stone-900/50">
+              <div className="flex items-center justify-between border-b border-stone-800 px-4 py-3">
                 <div className="flex items-center gap-2">
                   <Badge tone={STATUS_TONE[col]}>{STATUS_LABEL[col]}</Badge>
-                  <span className="text-xs text-slate-500">{grouped[col].length}</span>
+                  <span className="text-xs text-stone-500">{grouped[col].length}</span>
                 </div>
               </div>
               <div className="flex-1 space-y-2 p-3">
                 {grouped[col].length === 0 ? (
-                  <p className="px-1 py-6 text-center text-xs text-slate-600">No tasks</p>
+                  <p className="px-1 py-6 text-center text-xs text-stone-600">No tasks</p>
                 ) : (
                   grouped[col].map((t) => (
                     <div
                       key={t.id}
-                      className="rounded-lg border border-slate-800 bg-slate-900 p-3 transition-colors hover:border-slate-700"
+                      className="rounded-lg border border-stone-800 bg-stone-900 p-3 transition-colors hover:border-stone-700"
                     >
                       <div className="flex items-start justify-between gap-2">
                         <button
-                          className="text-left text-sm font-medium text-slate-100 hover:text-teal-300"
+                          className="text-left text-sm font-medium text-stone-100 hover:text-rose-300"
                           onClick={() => openEdit(t)}
                         >
                           {t.title}
                         </button>
                         <button
-                          className="text-slate-600 hover:text-rose-400"
+                          className="text-stone-600 hover:text-rose-400"
                           onClick={() => removeTask(t)}
                           aria-label="Delete"
                           title="Delete"
@@ -423,12 +423,12 @@ export default function TasksPage() {
                         </button>
                       </div>
                       {t.description && (
-                        <p className="mt-1 line-clamp-2 text-xs text-slate-500">{t.description}</p>
+                        <p className="mt-1 line-clamp-2 text-xs text-stone-500">{t.description}</p>
                       )}
-                      <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-slate-400">
+                      <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-stone-400">
                         {t.assignee_id && (
                           <span className="inline-flex items-center gap-1">
-                            <span className="h-1.5 w-1.5 rounded-full bg-teal-400" />
+                            <span className="h-1.5 w-1.5 rounded-full bg-rose-400" />
                             {teamById.get(t.assignee_id)?.name ?? 'Unknown'}
                           </span>
                         )}
@@ -442,7 +442,7 @@ export default function TasksPage() {
                             key={s}
                             onClick={() => changeStatus(t, s)}
                             disabled={busy}
-                            className="rounded border border-slate-700 px-2 py-0.5 text-[11px] text-slate-400 hover:border-teal-500 hover:text-teal-300 disabled:opacity-50"
+                            className="rounded border border-stone-700 px-2 py-0.5 text-[11px] text-stone-400 hover:border-rose-500 hover:text-rose-300 disabled:opacity-50"
                           >
                             → {STATUS_LABEL[s]}
                           </button>
@@ -479,31 +479,31 @@ export default function TasksPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Title</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Title</label>
             <input
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               placeholder="e.g. Schedule kickoff call"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Description</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Description</label>
             <textarea
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={3}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               placeholder="Optional details"
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Assignee</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Assignee</label>
               <select
                 value={form.assignee_id}
                 onChange={(e) => setForm({ ...form, assignee_id: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 <option value="">Unassigned</option>
                 {team.map((m) => (
@@ -514,11 +514,11 @@ export default function TasksPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Status</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Status</label>
               <select
                 value={form.status}
                 onChange={(e) => setForm({ ...form, status: e.target.value as Status })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 {STATUSES.map((s) => (
                   <option key={s} value={s}>
@@ -530,27 +530,27 @@ export default function TasksPage() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Due date</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Due date</label>
               <input
                 type="date"
                 value={form.due_date}
                 min={todayInput()}
                 onChange={(e) => setForm({ ...form, due_date: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Tracker ID (optional)</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Tracker ID (optional)</label>
               <input
                 value={form.tracker_id}
                 onChange={(e) => setForm({ ...form, tracker_id: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                 placeholder="Link to a tracker"
               />
             </div>
           </div>
           {editing && (
-            <div className="border-t border-slate-800 pt-3">
+            <div className="border-t border-stone-800 pt-3">
               <Button
                 variant="danger"
                 size="sm"

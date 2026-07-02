@@ -228,8 +228,8 @@ export default function ImportsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Data &amp; Imports</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-xl font-semibold text-stone-100">Data &amp; Imports</h1>
+          <p className="mt-1 text-sm text-stone-400">
             Bring accounts into the workspace via CSV, CRM connectors, or seed a full demo dataset.
           </p>
         </div>
@@ -265,15 +265,15 @@ export default function ImportsPage() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">CSV Account Import</h2>
-            <p className="mt-1 text-xs text-slate-500">
-              Required column: <code className="text-teal-300">name</code>. Optional:{' '}
+            <h2 className="text-sm font-semibold text-stone-200">CSV Account Import</h2>
+            <p className="mt-1 text-xs text-stone-500">
+              Required column: <code className="text-rose-300">name</code>. Optional:{' '}
               {SAMPLE_HEADERS.filter((h) => h !== 'name').join(', ')}.
             </p>
           </CardHeader>
           <CardBody className="space-y-3">
             <div className="flex flex-wrap items-center gap-2">
-              <label className="inline-flex cursor-pointer items-center rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-xs font-medium text-slate-200 hover:bg-slate-700">
+              <label className="inline-flex cursor-pointer items-center rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-xs font-medium text-stone-200 hover:bg-stone-700">
                 Upload CSV file
                 <input
                   type="file"
@@ -286,7 +286,7 @@ export default function ImportsPage() {
                 />
               </label>
               <button
-                className="text-xs text-teal-400 hover:text-teal-300"
+                className="text-xs text-rose-400 hover:text-rose-300"
                 onClick={() => {
                   setCsvText(SAMPLE_CSV)
                   setCsvError(null)
@@ -296,7 +296,7 @@ export default function ImportsPage() {
               </button>
               {csvText && (
                 <button
-                  className="text-xs text-slate-500 hover:text-slate-300"
+                  className="text-xs text-stone-500 hover:text-stone-300"
                   onClick={() => {
                     setCsvText('')
                     setCsvError(null)
@@ -315,7 +315,7 @@ export default function ImportsPage() {
               rows={7}
               spellCheck={false}
               placeholder={SAMPLE_HEADERS.join(',') + '\n...'}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-xs text-slate-200 placeholder-slate-600 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 font-mono text-xs text-stone-200 placeholder-stone-600 focus:border-rose-500 focus:outline-none"
             />
             {csvError && (
               <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-xs text-rose-300">
@@ -323,14 +323,14 @@ export default function ImportsPage() {
               </div>
             )}
             {parsed && !parsed.error && (
-              <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-3">
-                <div className="mb-2 text-xs text-slate-400">
+              <div className="rounded-lg border border-stone-800 bg-stone-950/60 p-3">
+                <div className="mb-2 text-xs text-stone-400">
                   Preview: {parsed.rows.length} row{parsed.rows.length === 1 ? '' : 's'},{' '}
                   {parsed.headers.length} columns
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs">
-                    <thead className="text-slate-500">
+                    <thead className="text-stone-500">
                       <tr>
                         {parsed.headers.map((h) => (
                           <th key={h} className="px-2 py-1 font-medium">
@@ -339,11 +339,11 @@ export default function ImportsPage() {
                         ))}
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800">
+                    <tbody className="divide-y divide-stone-800">
                       {parsed.rows.slice(0, 4).map((r, i) => (
                         <tr key={i}>
                           {parsed.headers.map((h) => (
-                            <td key={h} className="px-2 py-1 text-slate-300">
+                            <td key={h} className="px-2 py-1 text-stone-300">
                               {r[h] || '—'}
                             </td>
                           ))}
@@ -352,7 +352,7 @@ export default function ImportsPage() {
                     </tbody>
                   </table>
                   {parsed.rows.length > 4 && (
-                    <div className="mt-1 text-[11px] text-slate-600">
+                    <div className="mt-1 text-[11px] text-stone-600">
                       + {parsed.rows.length - 4} more rows
                     </div>
                   )}
@@ -367,8 +367,8 @@ export default function ImportsPage() {
 
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">CRM &amp; Product Connectors</h2>
-            <p className="mt-1 text-xs text-slate-500">
+            <h2 className="text-sm font-semibold text-stone-200">CRM &amp; Product Connectors</h2>
+            <p className="mt-1 text-xs text-stone-500">
               Queue a connector sync job. Each run is recorded in the job history below.
             </p>
           </CardHeader>
@@ -376,11 +376,11 @@ export default function ImportsPage() {
             {CONNECTORS.map((c) => (
               <div
                 key={c.source}
-                className="flex items-center justify-between gap-3 rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3"
+                className="flex items-center justify-between gap-3 rounded-lg border border-stone-800 bg-stone-900/60 px-4 py-3"
               >
                 <div>
-                  <div className="text-sm font-medium text-slate-100">{c.label}</div>
-                  <div className="text-xs text-slate-500">{c.desc}</div>
+                  <div className="text-sm font-medium text-stone-100">{c.label}</div>
+                  <div className="text-xs text-stone-500">{c.desc}</div>
                 </div>
                 <Button
                   size="sm"
@@ -398,7 +398,7 @@ export default function ImportsPage() {
 
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Import History</h2>
+          <h2 className="text-sm font-semibold text-stone-200">Import History</h2>
         </CardHeader>
         {jobs.length === 0 ? (
           <CardBody>
@@ -426,7 +426,7 @@ export default function ImportsPage() {
                 const errCount = Array.isArray(j.errors) ? j.errors.length : 0
                 return (
                   <TR key={j.id}>
-                    <TD className="font-medium text-slate-100">{j.source || '—'}</TD>
+                    <TD className="font-medium text-stone-100">{j.source || '—'}</TD>
                     <TD className="capitalize">{j.kind || '—'}</TD>
                     <TD>
                       <Badge tone={STATUS_TONE[j.status] ?? 'slate'}>{j.status}</Badge>
@@ -434,13 +434,13 @@ export default function ImportsPage() {
                     <TD className="text-right tabular-nums">
                       {j.rows_imported ?? 0}
                       {j.rows_total != null && (
-                        <span className="text-slate-500"> / {j.rows_total}</span>
+                        <span className="text-stone-500"> / {j.rows_total}</span>
                       )}
                     </TD>
                     <TD className="text-right tabular-nums">
                       {errCount > 0 ? <span className="text-rose-300">{errCount}</span> : '0'}
                     </TD>
-                    <TD className="text-xs text-slate-400">{fmtDateTime(j.created_at)}</TD>
+                    <TD className="text-xs text-stone-400">{fmtDateTime(j.created_at)}</TD>
                     <TD className="text-right">
                       {errCount > 0 && (
                         <Button size="sm" variant="ghost" onClick={() => setViewJob(j)}>
@@ -471,13 +471,13 @@ export default function ImportsPage() {
           </>
         }
       >
-        <div className="space-y-3 text-sm text-slate-300">
+        <div className="space-y-3 text-sm text-stone-300">
           <p>
             This provisions a complete demo dataset: journey templates, stages, accounts, active trackers
             with milestone history, blockers, and activity. Use it to explore the platform with realistic
             data.
           </p>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-stone-500">
             Existing data is not deleted. Seeded records are added to your current workspace.
           </p>
         </div>
@@ -495,7 +495,7 @@ export default function ImportsPage() {
         }
       >
         <div className="space-y-3">
-          <div className="text-xs text-slate-500">
+          <div className="text-xs text-stone-500">
             {viewJob?.source} · {fmtDateTime(viewJob?.created_at)}
           </div>
           {Array.isArray(viewJob?.errors) && viewJob.errors.length > 0 ? (
@@ -510,7 +510,7 @@ export default function ImportsPage() {
               ))}
             </div>
           ) : (
-            <p className="text-sm text-slate-400">No errors recorded for this job.</p>
+            <p className="text-sm text-stone-400">No errors recorded for this job.</p>
           )}
         </div>
       </Modal>

@@ -204,8 +204,8 @@ export default function TrackersPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Onboarding trackers</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-semibold text-stone-100">Onboarding trackers</h1>
+          <p className="mt-1 text-sm text-stone-400">
             Every active and completed customer onboarding, with progress and risk.
           </p>
         </div>
@@ -223,13 +223,13 @@ export default function TrackersPage() {
 
       {/* Saved views */}
       <div className="flex flex-wrap items-center gap-2">
-        <span className="text-xs uppercase tracking-wide text-slate-500">Saved views</span>
+        <span className="text-xs uppercase tracking-wide text-stone-500">Saved views</span>
         <button
           onClick={clearFilters}
           className={`rounded-full border px-3 py-1 text-xs transition-colors ${
             activeViewId == null
-              ? 'border-teal-500/40 bg-teal-500/15 text-teal-300'
-              : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700'
+              ? 'border-rose-500/40 bg-rose-500/15 text-rose-300'
+              : 'border-stone-700 bg-stone-800 text-stone-300 hover:bg-stone-700'
           }`}
         >
           All trackers
@@ -240,8 +240,8 @@ export default function TrackersPage() {
             onClick={() => applyView(v)}
             className={`rounded-full border px-3 py-1 text-xs transition-colors ${
               activeViewId === v.id
-                ? 'border-teal-500/40 bg-teal-500/15 text-teal-300'
-                : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700'
+                ? 'border-rose-500/40 bg-rose-500/15 text-rose-300'
+                : 'border-stone-700 bg-stone-800 text-stone-300 hover:bg-stone-700'
             }`}
           >
             {v.pinned ? '★ ' : ''}
@@ -250,7 +250,7 @@ export default function TrackersPage() {
         ))}
         <button
           onClick={() => setSaveOpen(true)}
-          className="rounded-full border border-dashed border-slate-700 px-3 py-1 text-xs text-slate-400 hover:border-teal-500/40 hover:text-teal-300"
+          className="rounded-full border border-dashed border-stone-700 px-3 py-1 text-xs text-stone-400 hover:border-rose-500/40 hover:text-rose-300"
         >
           + Save current filters
         </button>
@@ -260,7 +260,7 @@ export default function TrackersPage() {
       <Card>
         <CardBody className="flex flex-wrap items-end gap-3">
           <label className="flex flex-1 flex-col gap-1" style={{ minWidth: 200 }}>
-            <span className="text-xs font-medium text-slate-400">Search</span>
+            <span className="text-xs font-medium text-stone-400">Search</span>
             <input
               className="input"
               placeholder="Account, status, segment..."
@@ -272,7 +272,7 @@ export default function TrackersPage() {
             />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium text-slate-400">Status</span>
+            <span className="text-xs font-medium text-stone-400">Status</span>
             <select className="input" value={status} onChange={(e) => setStatus(e.target.value)}>
               <option value="">All statuses</option>
               {STATUSES.map((s) => (
@@ -283,7 +283,7 @@ export default function TrackersPage() {
             </select>
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium text-slate-400">Manager</span>
+            <span className="text-xs font-medium text-stone-400">Manager</span>
             <select className="input" value={manager} onChange={(e) => setManager(e.target.value)}>
               <option value="">All managers</option>
               {team.map((m) => (
@@ -355,12 +355,12 @@ export default function TrackersPage() {
                       <TD>
                         <Link
                           href={`/dashboard/trackers/${t.id}`}
-                          className="font-medium text-slate-100 hover:text-teal-300"
+                          className="font-medium text-stone-100 hover:text-rose-300"
                         >
                           {t.account_name || 'Account'}
                         </Link>
                         {t.segment_name && (
-                          <div className="text-xs text-slate-500">{t.segment_name}</div>
+                          <div className="text-xs text-stone-500">{t.segment_name}</div>
                         )}
                       </TD>
                       <TD>
@@ -368,27 +368,27 @@ export default function TrackersPage() {
                       </TD>
                       <TD>
                         <div className="flex items-center gap-2">
-                          <div className="h-1.5 w-24 overflow-hidden rounded-full bg-slate-800">
+                          <div className="h-1.5 w-24 overflow-hidden rounded-full bg-stone-800">
                             <div
-                              className="h-full rounded-full bg-gradient-to-r from-teal-500 to-emerald-400"
+                              className="h-full rounded-full bg-gradient-to-r from-rose-500 to-emerald-400"
                               style={{ width: `${progress}%` }}
                             />
                           </div>
-                          <span className="tabular-nums text-xs text-slate-400">{progress}%</span>
+                          <span className="tabular-nums text-xs text-stone-400">{progress}%</span>
                         </div>
                       </TD>
                       <TD>
                         {t.risk_score != null ? (
                           <Badge tone={riskTone(t.risk_score)}>{t.risk_score}</Badge>
                         ) : (
-                          <span className="text-slate-500">—</span>
+                          <span className="text-stone-500">—</span>
                         )}
                       </TD>
-                      <TD className="text-slate-400">
+                      <TD className="text-stone-400">
                         {t.manager_name || (t.manager_id ? teamName.get(t.manager_id) : null) || '—'}
                       </TD>
-                      <TD className="whitespace-nowrap text-slate-400">{fmtDate(t.started_at)}</TD>
-                      <TD className="whitespace-nowrap text-slate-400">{fmtDate(t.projected_go_live)}</TD>
+                      <TD className="whitespace-nowrap text-stone-400">{fmtDate(t.started_at)}</TD>
+                      <TD className="whitespace-nowrap text-stone-400">{fmtDate(t.projected_go_live)}</TD>
                     </TR>
                   )
                 })}
@@ -414,11 +414,11 @@ export default function TrackersPage() {
         }
       >
         <div className="space-y-3">
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-stone-400">
             Save the current filters as a reusable view. Captures status, manager, and search query.
           </p>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium text-slate-400">View name</span>
+            <span className="mb-1 block text-xs font-medium text-stone-400">View name</span>
             <input
               className="input"
               autoFocus
@@ -430,7 +430,7 @@ export default function TrackersPage() {
               }}
             />
           </label>
-          <div className="rounded-lg border border-slate-800 bg-slate-950/40 px-3 py-2 text-xs text-slate-400">
+          <div className="rounded-lg border border-stone-800 bg-stone-950/40 px-3 py-2 text-xs text-stone-400">
             <div>Status: {status || 'any'}</div>
             <div>Manager: {manager ? teamName.get(manager) || manager : 'any'}</div>
             <div>Search: {q.trim() || 'none'}</div>

@@ -49,45 +49,45 @@ export default function Pricing() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100">
-      <nav className="border-b border-slate-800 px-6 py-4 flex items-center justify-between">
+    <main className="min-h-screen bg-stone-950 text-stone-100">
+      <nav className="border-b border-stone-800 px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-teal-500 text-sm font-black text-slate-950">O</span>
+          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-rose-500 text-sm font-black text-stone-950">O</span>
           <span className="text-base font-bold tracking-tight">OnboardingTimeToValueTracker</span>
         </Link>
         <div className="flex items-center gap-3 text-sm">
-          <Link href="/auth/sign-in" className="text-slate-300 hover:text-white">Sign In</Link>
-          <Link href="/auth/sign-up" className="rounded-lg bg-teal-500 px-4 py-2 font-medium text-slate-950 hover:bg-teal-400">Get Started</Link>
+          <Link href="/auth/sign-in" className="text-stone-300 hover:text-white">Sign In</Link>
+          <Link href="/auth/sign-up" className="rounded-lg bg-rose-500 px-4 py-2 font-medium text-stone-950 hover:bg-rose-400">Get Started</Link>
         </div>
       </nav>
 
       <section className="mx-auto max-w-3xl px-6 py-20 text-center">
         <h1 className="text-4xl font-extrabold tracking-tight">Simple pricing: it&apos;s free</h1>
-        <p className="mx-auto mt-4 max-w-xl text-slate-400">
+        <p className="mx-auto mt-4 max-w-xl text-stone-400">
           Every feature of OnboardingTimeToValueTracker is free for signed-in users. Stripe billing is wired but
           optional, so the platform stays fully usable without any payment configured.
         </p>
 
-        <div className="mx-auto mt-12 max-w-md rounded-2xl border border-teal-500/30 bg-slate-900 p-8 text-left">
+        <div className="mx-auto mt-12 max-w-md rounded-2xl border border-rose-500/30 bg-stone-900 p-8 text-left">
           <div className="flex items-baseline justify-between">
             <h2 className="text-xl font-bold">Free</h2>
             <div>
               <span className="text-4xl font-extrabold">$0</span>
-              <span className="text-slate-500">/mo</span>
+              <span className="text-stone-500">/mo</span>
             </div>
           </div>
-          <p className="mt-2 text-sm text-slate-400">All features, no limits, no card required.</p>
+          <p className="mt-2 text-sm text-stone-400">All features, no limits, no card required.</p>
           <ul className="mt-6 space-y-2 text-sm">
             {included.map((f) => (
-              <li key={f} className="flex gap-2 text-slate-300">
-                <span className="text-teal-400">✓</span>
+              <li key={f} className="flex gap-2 text-stone-300">
+                <span className="text-rose-400">✓</span>
                 <span>{f}</span>
               </li>
             ))}
           </ul>
           <Link
             href="/auth/sign-up"
-            className="mt-8 block rounded-lg bg-teal-500 px-6 py-3 text-center font-semibold text-slate-950 hover:bg-teal-400"
+            className="mt-8 block rounded-lg bg-rose-500 px-6 py-3 text-center font-semibold text-stone-950 hover:bg-rose-400"
           >
             Create your free account
           </Link>
@@ -96,16 +96,16 @@ export default function Pricing() {
             <button
               onClick={upgrade}
               disabled={busy}
-              className="mt-3 block w-full rounded-lg border border-slate-700 px-6 py-3 text-center font-semibold text-slate-200 hover:bg-slate-800 disabled:opacity-50"
+              className="mt-3 block w-full rounded-lg border border-stone-700 px-6 py-3 text-center font-semibold text-stone-200 hover:bg-stone-800 disabled:opacity-50"
             >
               {busy ? 'Starting checkout...' : 'Optional: support development'}
             </button>
           )}
-          {msg && <p className="mt-3 text-center text-xs text-slate-400">{msg}</p>}
+          {msg && <p className="mt-3 text-center text-xs text-stone-400">{msg}</p>}
         </div>
       </section>
 
-      <footer className="border-t border-slate-800 py-8 text-center text-sm text-slate-600">
+      <footer className="border-t border-stone-800 py-8 text-center text-sm text-stone-600">
         <p>OnboardingTimeToValueTracker — Customer implementation time-to-value tracking.</p>
       </footer>
     </main>

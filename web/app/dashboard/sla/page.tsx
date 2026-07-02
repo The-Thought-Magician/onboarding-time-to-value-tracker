@@ -219,8 +219,8 @@ export default function SlaPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">SLA Policies</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-xl font-semibold text-stone-100">SLA Policies</h1>
+          <p className="mt-1 text-sm text-stone-400">
             Time-to-value commitments and attainment against active onboarding trackers.
           </p>
         </div>
@@ -246,13 +246,13 @@ export default function SlaPage() {
       {/* Attainment gauge */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">SLA Attainment</h2>
+          <h2 className="text-sm font-semibold text-stone-200">SLA Attainment</h2>
         </CardHeader>
         <CardBody>
           <div className="flex flex-wrap items-center gap-6">
             <div className="flex items-center gap-4">
-              <div className="text-4xl font-semibold tabular-nums text-slate-100">{attainPct}%</div>
-              <div className="text-xs text-slate-400">
+              <div className="text-4xl font-semibold tabular-nums text-stone-100">{attainPct}%</div>
+              <div className="text-xs text-stone-400">
                 {typeof attainment?.met === 'number' && typeof attainment?.total === 'number' ? (
                   <span>
                     {attainment.met} of {attainment.total} trackers within SLA
@@ -263,7 +263,7 @@ export default function SlaPage() {
               </div>
             </div>
             <div className="min-w-[200px] flex-1">
-              <div className="h-3 w-full overflow-hidden rounded-full bg-slate-800">
+              <div className="h-3 w-full overflow-hidden rounded-full bg-stone-800">
                 <div
                   className={`h-full rounded-full transition-all ${
                     attainPct >= 90 ? 'bg-emerald-500' : attainPct >= 70 ? 'bg-amber-500' : 'bg-rose-500'
@@ -271,7 +271,7 @@ export default function SlaPage() {
                   style={{ width: `${Math.min(100, Math.max(0, attainPct))}%` }}
                 />
               </div>
-              <div className="mt-1 flex justify-between text-[11px] text-slate-500">
+              <div className="mt-1 flex justify-between text-[11px] text-stone-500">
                 <span>0%</span>
                 <span>Target 90%</span>
                 <span>100%</span>
@@ -284,7 +284,7 @@ export default function SlaPage() {
       {/* Policies table */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Policies</h2>
+          <h2 className="text-sm font-semibold text-stone-200">Policies</h2>
         </CardHeader>
         {policies.length === 0 ? (
           <CardBody>
@@ -311,7 +311,7 @@ export default function SlaPage() {
             <TBody>
               {policies.map((p) => (
                 <TR key={p.id}>
-                  <TD className="font-medium text-slate-100">{p.name}</TD>
+                  <TD className="font-medium text-stone-100">{p.name}</TD>
                   <TD>
                     <div className="flex flex-wrap gap-1">
                       {p.segment_id ? (
@@ -320,7 +320,7 @@ export default function SlaPage() {
                       {p.template_id ? (
                         <Badge tone="teal">{tmplById.get(p.template_id)?.name ?? 'Template'}</Badge>
                       ) : null}
-                      {!p.segment_id && !p.template_id && <span className="text-xs text-slate-500">All</span>}
+                      {!p.segment_id && !p.template_id && <span className="text-xs text-stone-500">All</span>}
                     </div>
                   </TD>
                   <TD className="text-right tabular-nums">{p.target_first_value_days}d</TD>
@@ -352,7 +352,7 @@ export default function SlaPage() {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-slate-200">SLA Breaches</h2>
+            <h2 className="text-sm font-semibold text-stone-200">SLA Breaches</h2>
             {breaches.length > 0 && <Badge tone="red">{breaches.length}</Badge>}
           </div>
         </CardHeader>
@@ -381,7 +381,7 @@ export default function SlaPage() {
                 const over = b.over_by ?? (b.actual_days != null && b.target_days != null ? b.actual_days - b.target_days : undefined)
                 return (
                   <TR key={`${b.tracker_id ?? b.account_id ?? i}-${i}`}>
-                    <TD className="font-medium text-slate-100">{b.account_name ?? b.account_id ?? '—'}</TD>
+                    <TD className="font-medium text-stone-100">{b.account_name ?? b.account_id ?? '—'}</TD>
                     <TD>{b.policy_name ?? '—'}</TD>
                     <TD>
                       <Badge tone={b.metric === 'go_live' ? 'amber' : 'blue'}>
@@ -423,21 +423,21 @@ export default function SlaPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Name</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               placeholder="e.g. Enterprise SLA"
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Segment (optional)</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Segment (optional)</label>
               <select
                 value={form.segment_id}
                 onChange={(e) => setForm({ ...form, segment_id: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 <option value="">All segments</option>
                 {segments.map((s) => (
@@ -448,11 +448,11 @@ export default function SlaPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Template (optional)</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Template (optional)</label>
               <select
                 value={form.template_id}
                 onChange={(e) => setForm({ ...form, template_id: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 <option value="">All templates</option>
                 {templates.map((t) => (
@@ -465,42 +465,42 @@ export default function SlaPage() {
           </div>
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">First value (days)</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">First value (days)</label>
               <input
                 type="number"
                 min={1}
                 value={form.target_first_value_days}
                 onChange={(e) => setForm({ ...form, target_first_value_days: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Go-live (days)</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Go-live (days)</label>
               <input
                 type="number"
                 min={1}
                 value={form.target_go_live_days}
                 onChange={(e) => setForm({ ...form, target_go_live_days: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Grace (days)</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Grace (days)</label>
               <input
                 type="number"
                 min={0}
                 value={form.grace_days}
                 onChange={(e) => setForm({ ...form, grace_days: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               />
             </div>
           </div>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-stone-300">
             <input
               type="checkbox"
               checked={form.active}
               onChange={(e) => setForm({ ...form, active: e.target.checked })}
-              className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-teal-500 focus:ring-teal-500"
+              className="h-4 w-4 rounded border-stone-600 bg-stone-800 text-rose-500 focus:ring-rose-500"
             />
             Active
           </label>

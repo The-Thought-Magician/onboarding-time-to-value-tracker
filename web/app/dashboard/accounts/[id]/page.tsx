@@ -260,15 +260,15 @@ export default function AccountDetailPage() {
       {/* Header */}
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-sm text-slate-500">
-            <Link href="/dashboard/accounts" className="hover:text-teal-300">
+          <div className="flex items-center gap-2 text-sm text-stone-500">
+            <Link href="/dashboard/accounts" className="hover:text-rose-300">
               Accounts
             </Link>
             <span>/</span>
-            <span className="text-slate-300">{account.name}</span>
+            <span className="text-stone-300">{account.name}</span>
           </div>
           <div className="mt-2 flex flex-wrap items-center gap-3">
-            <h1 className="text-2xl font-semibold text-slate-100">{account.name}</h1>
+            <h1 className="text-2xl font-semibold text-stone-100">{account.name}</h1>
             <Badge tone={healthTone(account.health)}>{account.health || 'unknown'}</Badge>
             {account.plan && <Badge tone="blue">{account.plan}</Badge>}
           </div>
@@ -277,7 +277,7 @@ export default function AccountDetailPage() {
               href={`https://${account.domain.replace(/^https?:\/\//, '')}`}
               target="_blank"
               rel="noreferrer"
-              className="mt-1 inline-block text-sm text-teal-400 hover:text-teal-300"
+              className="mt-1 inline-block text-sm text-rose-400 hover:text-rose-300"
             >
               {account.domain}
             </a>
@@ -331,7 +331,7 @@ export default function AccountDetailPage() {
         {/* Account details */}
         <Card className="lg:col-span-1">
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Account details</h2>
+            <h2 className="text-sm font-semibold text-stone-200">Account details</h2>
           </CardHeader>
           <CardBody className="space-y-3 text-sm">
             <Detail label="Plan" value={account.plan || '—'} />
@@ -346,20 +346,20 @@ export default function AccountDetailPage() {
         {/* Linked tracker summary */}
         <Card className="lg:col-span-2">
           <CardHeader className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-slate-200">Onboarding tracker</h2>
+            <h2 className="text-sm font-semibold text-stone-200">Onboarding tracker</h2>
             {tracker?.status && <Badge tone={statusTone(tracker.status)}>{tracker.status}</Badge>}
           </CardHeader>
           <CardBody>
             {tracker?.id ? (
               <div className="space-y-5">
                 <div>
-                  <div className="mb-1 flex items-center justify-between text-xs text-slate-400">
+                  <div className="mb-1 flex items-center justify-between text-xs text-stone-400">
                     <span>Onboarding progress</span>
-                    <span className="tabular-nums text-slate-300">{progress}%</span>
+                    <span className="tabular-nums text-stone-300">{progress}%</span>
                   </div>
-                  <div className="h-2.5 w-full overflow-hidden rounded-full bg-slate-800">
+                  <div className="h-2.5 w-full overflow-hidden rounded-full bg-stone-800">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-teal-500 to-emerald-400 transition-all"
+                      className="h-full rounded-full bg-gradient-to-r from-rose-500 to-emerald-400 transition-all"
                       style={{ width: `${progress}%` }}
                     />
                   </div>
@@ -396,11 +396,11 @@ export default function AccountDetailPage() {
       {/* Activity timeline */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Activity</h2>
+          <h2 className="text-sm font-semibold text-stone-200">Activity</h2>
         </CardHeader>
         <CardBody>
           {activities.length === 0 ? (
-            <p className="py-6 text-center text-sm text-slate-500">No activity recorded for this account yet.</p>
+            <p className="py-6 text-center text-sm text-stone-500">No activity recorded for this account yet.</p>
           ) : (
             <Table>
               <THead>
@@ -414,11 +414,11 @@ export default function AccountDetailPage() {
               <TBody>
                 {activities.map((a) => (
                   <TR key={a.id}>
-                    <TD className="whitespace-nowrap text-slate-400">{fmtDateTime(a.created_at)}</TD>
+                    <TD className="whitespace-nowrap text-stone-400">{fmtDateTime(a.created_at)}</TD>
                     <TD>
                       <Badge tone="slate">{a.type || 'event'}</Badge>
                     </TD>
-                    <TD className="text-slate-400">{a.actor || '—'}</TD>
+                    <TD className="text-stone-400">{a.actor || '—'}</TD>
                     <TD>{a.message || '—'}</TD>
                   </TR>
                 ))}
@@ -534,8 +534,8 @@ export default function AccountDetailPage() {
 function Detail({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div>
-      <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
-      <div className="mt-0.5 text-slate-200">{value}</div>
+      <div className="text-xs uppercase tracking-wide text-stone-500">{label}</div>
+      <div className="mt-0.5 text-stone-200">{value}</div>
     </div>
   )
 }
@@ -543,7 +543,7 @@ function Detail({ label, value }: { label: string; value: React.ReactNode }) {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium text-slate-400">{label}</span>
+      <span className="mb-1 block text-xs font-medium text-stone-400">{label}</span>
       {children}
     </label>
   )

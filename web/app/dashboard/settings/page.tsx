@@ -149,8 +149,8 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-xl font-semibold text-slate-100">Settings</h1>
-        <p className="mt-1 text-sm text-slate-400">
+        <h1 className="text-xl font-semibold text-stone-100">Settings</h1>
+        <p className="mt-1 text-sm text-stone-400">
           Configure your workspace, manage segments and products, organize saved views, and review your plan.
         </p>
       </div>
@@ -176,15 +176,15 @@ export default function SettingsPage() {
         />
       </div>
 
-      <div className="flex flex-wrap gap-1 border-b border-slate-800">
+      <div className="flex flex-wrap gap-1 border-b border-stone-800">
         {TABS.map((t) => (
           <button
             key={t.id}
             onClick={() => setTab(t.id)}
             className={`-mb-px border-b-2 px-4 py-2 text-sm font-medium transition-colors ${
               tab === t.id
-                ? 'border-teal-400 text-teal-300'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
+                ? 'border-rose-400 text-rose-300'
+                : 'border-transparent text-stone-400 hover:text-stone-200'
             }`}
           >
             {t.label}
@@ -268,29 +268,29 @@ function WorkspaceTab({
   return (
     <Card>
       <CardHeader>
-        <h2 className="text-base font-semibold text-slate-100">Workspace</h2>
-        <p className="mt-1 text-sm text-slate-400">
+        <h2 className="text-base font-semibold text-stone-100">Workspace</h2>
+        <p className="mt-1 text-sm text-stone-400">
           Defaults applied across trackers, stall detection, and reporting.
         </p>
       </CardHeader>
       <CardBody className="space-y-5">
         <div>
-          <label className="mb-1 block text-xs font-medium text-slate-400">Workspace name</label>
+          <label className="mb-1 block text-xs font-medium text-stone-400">Workspace name</label>
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="e.g. Acme Customer Success"
-            className="w-full max-w-md rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+            className="w-full max-w-md rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
           />
         </div>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Default segment</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Default segment</label>
             <select
               value={defaultSegmentId ?? ''}
               onChange={(e) => setDefaultSegmentId(e.target.value)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="">No default</option>
               {segments.map((s) => (
@@ -299,42 +299,42 @@ function WorkspaceTab({
                 </option>
               ))}
             </select>
-            <p className="mt-1 text-xs text-slate-500">Pre-selected when creating new accounts.</p>
+            <p className="mt-1 text-xs text-stone-500">Pre-selected when creating new accounts.</p>
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Default stall threshold (days)</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Default stall threshold (days)</label>
             <input
               type="number"
               min={1}
               value={defaultStallDays}
               onChange={(e) => setDefaultStallDays(e.target.value)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             />
-            <p className="mt-1 text-xs text-slate-500">Days of inactivity before a tracker is flagged as stalled.</p>
+            <p className="mt-1 text-xs text-stone-500">Days of inactivity before a tracker is flagged as stalled.</p>
           </div>
         </div>
 
-        <label className="flex items-center gap-3 text-sm text-slate-300">
+        <label className="flex items-center gap-3 text-sm text-stone-300">
           <input
             type="checkbox"
             checked={businessDaysOnly}
             onChange={(e) => setBusinessDaysOnly(e.target.checked)}
-            className="h-4 w-4 rounded border-slate-600 bg-slate-950 text-teal-500 focus:ring-teal-500/60"
+            className="h-4 w-4 rounded border-stone-600 bg-stone-950 text-rose-500 focus:ring-rose-500/60"
           />
           <span>
             Business days only
-            <span className="ml-2 text-xs text-slate-500">Exclude weekends from TTV and target-day calculations.</span>
+            <span className="ml-2 text-xs text-stone-500">Exclude weekends from TTV and target-day calculations.</span>
           </span>
         </label>
 
-        <div className="flex items-center gap-3 border-t border-slate-800 pt-4">
+        <div className="flex items-center gap-3 border-t border-stone-800 pt-4">
           <Button onClick={save} disabled={saving || !name.trim()}>
             {saving ? 'Saving…' : 'Save changes'}
           </Button>
           {saved && <span className="text-sm text-emerald-300">Saved</span>}
           {workspace?.id && (
-            <span className="ml-auto text-xs text-slate-500">
+            <span className="ml-auto text-xs text-stone-500">
               Created {fmtDate(workspace.created_at)}
             </span>
           )}
@@ -441,15 +441,15 @@ function SegmentsTab({
     <Card>
       <CardHeader className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 className="text-base font-semibold text-slate-100">Segments</h2>
-          <p className="mt-1 text-sm text-slate-400">Group accounts by tier, region, or motion for filtering and SLAs.</p>
+          <h2 className="text-base font-semibold text-stone-100">Segments</h2>
+          <p className="mt-1 text-sm text-stone-400">Group accounts by tier, region, or motion for filtering and SLAs.</p>
         </div>
         <div className="flex items-center gap-2">
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search segments..."
-            className="w-48 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+            className="w-48 rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
           />
           <Button onClick={openCreate}>+ New segment</Button>
         </div>
@@ -480,9 +480,9 @@ function SegmentsTab({
             <TBody>
               {filtered.map((s) => (
                 <TR key={s.id}>
-                  <TD className="font-medium text-slate-100">{s.name}</TD>
+                  <TD className="font-medium text-stone-100">{s.name}</TD>
                   <TD className="max-w-md truncate">
-                    {s.description ? s.description : <span className="text-slate-600">—</span>}
+                    {s.description ? s.description : <span className="text-stone-600">—</span>}
                   </TD>
                   <TD>
                     <Badge tone={colorToTone(s.color)}>{s.color ?? 'slate'}</Badge>
@@ -524,33 +524,33 @@ function SegmentsTab({
             <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">{formError}</div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Name</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="e.g. Enterprise"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Description</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Description</label>
             <textarea
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={2}
               placeholder="Optional notes about this segment"
-              className="w-full resize-y rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+              className="w-full resize-y rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Color</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Color</label>
             <div className="flex flex-wrap gap-2">
               {SEGMENT_COLORS.map((c) => (
                 <button
                   key={c}
                   type="button"
                   onClick={() => setForm({ ...form, color: c })}
-                  className={`rounded-full border px-1 py-1 ${form.color === c ? 'ring-2 ring-teal-400' : ''}`}
+                  className={`rounded-full border px-1 py-1 ${form.color === c ? 'ring-2 ring-rose-400' : ''}`}
                   aria-label={c}
                 >
                   <Badge tone={c}>{c}</Badge>
@@ -654,15 +654,15 @@ function ProductsTab({
     <Card>
       <CardHeader className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 className="text-base font-semibold text-slate-100">Products</h2>
-          <p className="mt-1 text-sm text-slate-400">The products customers onboard onto. Templates and accounts can target a product.</p>
+          <h2 className="text-base font-semibold text-stone-100">Products</h2>
+          <p className="mt-1 text-sm text-stone-400">The products customers onboard onto. Templates and accounts can target a product.</p>
         </div>
         <div className="flex items-center gap-2">
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search products..."
-            className="w-48 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+            className="w-48 rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
           />
           <Button onClick={openCreate}>+ New product</Button>
         </div>
@@ -692,9 +692,9 @@ function ProductsTab({
             <TBody>
               {filtered.map((p) => (
                 <TR key={p.id}>
-                  <TD className="font-medium text-slate-100">{p.name}</TD>
+                  <TD className="font-medium text-stone-100">{p.name}</TD>
                   <TD className="max-w-md truncate">
-                    {p.description ? p.description : <span className="text-slate-600">—</span>}
+                    {p.description ? p.description : <span className="text-stone-600">—</span>}
                   </TD>
                   <TD className="text-right">
                     <div className="flex justify-end gap-2">
@@ -733,22 +733,22 @@ function ProductsTab({
             <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">{formError}</div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Name</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="e.g. Analytics Cloud"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Description</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Description</label>
             <textarea
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={2}
               placeholder="Optional"
-              className="w-full resize-y rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+              className="w-full resize-y rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
             />
           </div>
         </div>
@@ -845,8 +845,8 @@ function ViewsTab({
     <Card>
       <CardHeader className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 className="text-base font-semibold text-slate-100">Saved Views</h2>
-          <p className="mt-1 text-sm text-slate-400">
+          <h2 className="text-base font-semibold text-stone-100">Saved Views</h2>
+          <p className="mt-1 text-sm text-stone-400">
             Saved filter sets and cohorts. Pin the ones you use most so they surface first.
           </p>
         </div>
@@ -855,13 +855,13 @@ function ViewsTab({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search views..."
-            className="w-48 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+            className="w-48 rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
           />
           {kinds.length > 0 && (
             <select
               value={kindFilter}
               onChange={(e) => setKindFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="">All kinds</option>
               {kinds.map((k) => (
@@ -899,13 +899,13 @@ function ViewsTab({
             <TBody>
               {filtered.map((v) => (
                 <TR key={v.id}>
-                  <TD className="font-medium text-slate-100">
+                  <TD className="font-medium text-stone-100">
                     <span className="flex items-center gap-2">
-                      {v.pinned && <span title="Pinned" className="text-teal-400">★</span>}
+                      {v.pinned && <span title="Pinned" className="text-rose-400">★</span>}
                       {v.name}
                     </span>
                   </TD>
-                  <TD>{v.kind ? <Badge tone="blue">{v.kind}</Badge> : <span className="text-slate-600">—</span>}</TD>
+                  <TD>{v.kind ? <Badge tone="blue">{v.kind}</Badge> : <span className="text-stone-600">—</span>}</TD>
                   <TD className="text-right tabular-nums">{filterCount(v.filters)}</TD>
                   <TD>{fmtDate(v.created_at)}</TD>
                   <TD className="text-right">
@@ -944,11 +944,11 @@ function ViewsTab({
         }
       >
         <div>
-          <label className="mb-1 block text-xs font-medium text-slate-400">Name</label>
+          <label className="mb-1 block text-xs font-medium text-stone-400">Name</label>
           <input
             value={editName}
             onChange={(e) => setEditName(e.target.value)}
-            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+            className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
           />
         </div>
       </Modal>
@@ -1035,28 +1035,28 @@ function BillingTab({
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <h2 className="text-base font-semibold text-slate-100">Current plan</h2>
+            <h2 className="text-base font-semibold text-stone-100">Current plan</h2>
           </CardHeader>
           <CardBody className="space-y-4">
             <div className="flex items-baseline justify-between">
               <div>
-                <div className="text-2xl font-semibold text-slate-100">{plan?.name ?? 'Free'}</div>
-                <div className="mt-1 text-sm text-slate-400">{fmtPrice(plan?.price_cents)}</div>
+                <div className="text-2xl font-semibold text-stone-100">{plan?.name ?? 'Free'}</div>
+                <div className="mt-1 text-sm text-stone-400">{fmtPrice(plan?.price_cents)}</div>
               </div>
               <Badge tone={statusTone(sub?.status)}>{sub?.status ?? 'no subscription'}</Badge>
             </div>
 
-            <dl className="space-y-2 border-t border-slate-800 pt-4 text-sm">
+            <dl className="space-y-2 border-t border-stone-800 pt-4 text-sm">
               <div className="flex justify-between">
-                <dt className="text-slate-400">Subscription status</dt>
-                <dd className="text-slate-200">{sub?.status ?? '—'}</dd>
+                <dt className="text-stone-400">Subscription status</dt>
+                <dd className="text-stone-200">{sub?.status ?? '—'}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-slate-400">Renews / expires</dt>
-                <dd className="text-slate-200">{fmtDate(sub?.current_period_end)}</dd>
+                <dt className="text-stone-400">Renews / expires</dt>
+                <dd className="text-stone-200">{fmtDate(sub?.current_period_end)}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-slate-400">Stripe billing</dt>
+                <dt className="text-stone-400">Stripe billing</dt>
                 <dd>
                   {stripeEnabled ? (
                     <Badge tone="green">Enabled</Badge>
@@ -1073,7 +1073,7 @@ function BillingTab({
               </div>
             )}
 
-            <div className="flex flex-wrap gap-2 border-t border-slate-800 pt-4">
+            <div className="flex flex-wrap gap-2 border-t border-stone-800 pt-4">
               {!isActive && (
                 <Button onClick={checkout} disabled={busy != null}>
                   {busy === 'checkout' ? 'Redirecting…' : 'Upgrade to Pro'}
@@ -1087,7 +1087,7 @@ function BillingTab({
               </Button>
             </div>
             {!stripeEnabled && (
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-stone-500">
                 Stripe is optional on this instance. When it is not configured, every feature is available for free.
               </p>
             )}
@@ -1096,10 +1096,10 @@ function BillingTab({
 
         <Card>
           <CardHeader>
-            <h2 className="text-base font-semibold text-slate-100">What is included</h2>
+            <h2 className="text-base font-semibold text-stone-100">What is included</h2>
           </CardHeader>
           <CardBody>
-            <ul className="space-y-2 text-sm text-slate-300">
+            <ul className="space-y-2 text-sm text-stone-300">
               {[
                 'Unlimited onboarding trackers and accounts',
                 'Journey templates with milestone editor',
@@ -1110,7 +1110,7 @@ function BillingTab({
                 'CSV imports and shareable customer plans',
               ].map((f) => (
                 <li key={f} className="flex items-start gap-2">
-                  <span className="mt-0.5 text-teal-400">✓</span>
+                  <span className="mt-0.5 text-rose-400">✓</span>
                   <span>{f}</span>
                 </li>
               ))}

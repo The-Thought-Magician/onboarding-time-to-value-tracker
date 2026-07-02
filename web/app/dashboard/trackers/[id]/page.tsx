@@ -360,7 +360,7 @@ export default function TrackerWorkspacePage() {
   if (error && !tracker) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/trackers" className="text-sm text-teal-400 hover:text-teal-300">
+        <Link href="/dashboard/trackers" className="text-sm text-rose-400 hover:text-rose-300">
           ← Back to trackers
         </Link>
         <EmptyState title="Could not load tracker" description={error} />
@@ -370,7 +370,7 @@ export default function TrackerWorkspacePage() {
   if (!tracker) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/trackers" className="text-sm text-teal-400 hover:text-teal-300">
+        <Link href="/dashboard/trackers" className="text-sm text-rose-400 hover:text-rose-300">
           ← Back to trackers
         </Link>
         <EmptyState title="Tracker not found" />
@@ -381,7 +381,7 @@ export default function TrackerWorkspacePage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <Link href="/dashboard/trackers" className="text-sm text-teal-400 hover:text-teal-300">
+        <Link href="/dashboard/trackers" className="text-sm text-rose-400 hover:text-rose-300">
           ← Back to trackers
         </Link>
         <div className="flex items-center gap-2">
@@ -399,9 +399,9 @@ export default function TrackerWorkspacePage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-slate-100">
+            <h1 className="text-2xl font-bold text-stone-100">
               {account ? (
-                <Link href={`/dashboard/accounts/${account.id}`} className="hover:text-teal-300">
+                <Link href={`/dashboard/accounts/${account.id}`} className="hover:text-rose-300">
                   {account.name}
                 </Link>
               ) : (
@@ -413,7 +413,7 @@ export default function TrackerWorkspacePage() {
             </Badge>
             {account?.health && <Badge tone={account.health === 'green' ? 'green' : account.health === 'red' ? 'red' : 'amber'}>{account.health}</Badge>}
           </div>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             {account?.domain && <span>{account.domain} · </span>}
             {account?.plan && <span>{account.plan} · </span>}
             ARR {fmtArr(account?.arr_cents)}
@@ -440,20 +440,20 @@ export default function TrackerWorkspacePage() {
       <Card>
         <CardBody>
           <div className="mb-2 flex items-center justify-between text-sm">
-            <span className="text-slate-400">
+            <span className="text-stone-400">
               Current milestone:{' '}
-              <span className="font-medium text-slate-100">{currentMilestone?.name ?? 'None'}</span>
+              <span className="font-medium text-stone-100">{currentMilestone?.name ?? 'None'}</span>
             </span>
-            <span className="text-slate-500">Started {fmtDate(tracker.started_at)}</span>
+            <span className="text-stone-500">Started {fmtDate(tracker.started_at)}</span>
           </div>
-          <div className="h-2.5 w-full overflow-hidden rounded-full bg-slate-800">
-            <div className="h-full rounded-full bg-teal-500 transition-all" style={{ width: `${Math.min(100, Math.max(0, progress))}%` }} />
+          <div className="h-2.5 w-full overflow-hidden rounded-full bg-stone-800">
+            <div className="h-full rounded-full bg-rose-500 transition-all" style={{ width: `${Math.min(100, Math.max(0, progress))}%` }} />
           </div>
         </CardBody>
       </Card>
 
       {/* Tabs */}
-      <div className="flex flex-wrap gap-1 border-b border-slate-800">
+      <div className="flex flex-wrap gap-1 border-b border-stone-800">
         {([
           ['milestones', `Milestones (${milestones.length})`],
           ['blockers', `Blockers (${openBlockers.length})`],
@@ -465,8 +465,8 @@ export default function TrackerWorkspacePage() {
             onClick={() => setTab(key)}
             className={`border-b-2 px-4 py-2 text-sm font-medium transition-colors ${
               tab === key
-                ? 'border-teal-500 text-teal-300'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
+                ? 'border-rose-500 text-rose-300'
+                : 'border-transparent text-stone-400 hover:text-stone-200'
             }`}
           >
             {label}
@@ -489,26 +489,26 @@ export default function TrackerWorkspacePage() {
                     <li
                       key={m.id}
                       className={`flex items-start gap-3 rounded-xl border p-4 ${
-                        isCurrent ? 'border-teal-500/50 bg-teal-500/5' : 'border-slate-800 bg-slate-900/60'
+                        isCurrent ? 'border-rose-500/50 bg-rose-500/5' : 'border-stone-800 bg-stone-900/60'
                       }`}
                     >
                       <span
                         className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold ${
-                          done ? 'bg-emerald-500 text-slate-950' : isCurrent ? 'bg-teal-500 text-slate-950' : 'bg-slate-800 text-slate-400'
+                          done ? 'bg-emerald-500 text-stone-950' : isCurrent ? 'bg-rose-500 text-stone-950' : 'bg-stone-800 text-stone-400'
                         }`}
                       >
                         {done ? '✓' : i + 1}
                       </span>
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="font-semibold text-slate-100">{m.name}</span>
+                          <span className="font-semibold text-stone-100">{m.name}</span>
                           {m.is_first_value && <Badge tone="teal">First value</Badge>}
                           {m.is_go_live && <Badge tone="green">Go-live</Badge>}
                           <Badge tone={msTone(m.status)}>{m.status || 'pending'}</Badge>
                         </div>
-                        <div className="mt-1.5 flex flex-wrap gap-2 text-xs text-slate-400">
-                          {m.category && <span className="rounded bg-slate-800 px-2 py-0.5">{m.category}</span>}
-                          {m.target_days != null && <span className="rounded bg-slate-800 px-2 py-0.5">{m.target_days}d target</span>}
+                        <div className="mt-1.5 flex flex-wrap gap-2 text-xs text-stone-400">
+                          {m.category && <span className="rounded bg-stone-800 px-2 py-0.5">{m.category}</span>}
+                          {m.target_days != null && <span className="rounded bg-stone-800 px-2 py-0.5">{m.target_days}d target</span>}
                           {m.started_at && <span>Started {fmtDate(m.started_at)}</span>}
                           {m.completed_at && <span>Done {fmtDate(m.completed_at)}</span>}
                         </div>
@@ -533,17 +533,17 @@ export default function TrackerWorkspacePage() {
           <div>
             <Card>
               <CardHeader>
-                <h3 className="text-sm font-semibold text-slate-100">Recent activity</h3>
+                <h3 className="text-sm font-semibold text-stone-100">Recent activity</h3>
               </CardHeader>
               <CardBody>
                 {activity.length === 0 ? (
-                  <p className="text-sm text-slate-500">No activity yet.</p>
+                  <p className="text-sm text-stone-500">No activity yet.</p>
                 ) : (
                   <ul className="space-y-3">
                     {activity.slice(0, 12).map((a) => (
-                      <li key={a.id} className="border-l-2 border-slate-800 pl-3 text-sm">
-                        <div className="text-slate-200">{a.message || a.type}</div>
-                        <div className="text-xs text-slate-500">
+                      <li key={a.id} className="border-l-2 border-stone-800 pl-3 text-sm">
+                        <div className="text-stone-200">{a.message || a.type}</div>
+                        <div className="text-xs text-stone-500">
                           {a.actor && <span>{a.actor} · </span>}
                           {fmtDate(a.created_at)}
                         </div>
@@ -561,7 +561,7 @@ export default function TrackerWorkspacePage() {
       {tab === 'blockers' && (
         <Card>
           <CardHeader className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-slate-100">Blockers</h3>
+            <h3 className="text-sm font-semibold text-stone-100">Blockers</h3>
             <Button size="sm" onClick={() => { setFormError(''); setBlockerOpen(true) }}>+ Log blocker</Button>
           </CardHeader>
           <CardBody>
@@ -572,17 +572,17 @@ export default function TrackerWorkspacePage() {
                 {blockers.map((b) => {
                   const resolved = (b.status || '').toLowerCase() === 'resolved'
                   return (
-                    <li key={b.id} className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+                    <li key={b.id} className="rounded-xl border border-stone-800 bg-stone-900/60 p-4">
                       <div className="flex flex-wrap items-start justify-between gap-2">
                         <div className="min-w-0">
                           <div className="flex flex-wrap items-center gap-2">
-                            <span className={`font-medium ${resolved ? 'text-slate-400 line-through' : 'text-slate-100'}`}>{b.title}</span>
+                            <span className={`font-medium ${resolved ? 'text-stone-400 line-through' : 'text-stone-100'}`}>{b.title}</span>
                             <Badge tone={sevTone(b.severity)}>{b.severity || 'medium'}</Badge>
                             {b.category && <Badge tone="slate">{b.category}</Badge>}
                             <Badge tone={resolved ? 'green' : 'amber'}>{b.status || 'open'}</Badge>
                           </div>
-                          {b.description && <p className="mt-1 text-sm text-slate-400">{b.description}</p>}
-                          <div className="mt-1 text-xs text-slate-500">
+                          {b.description && <p className="mt-1 text-sm text-stone-400">{b.description}</p>}
+                          <div className="mt-1 text-xs text-stone-500">
                             {b.owner && <span>Owner {b.owner} · </span>}
                             Opened {fmtDate(b.opened_at)}
                             {resolved && b.resolved_at && <span> · Resolved {fmtDate(b.resolved_at)}</span>}
@@ -608,7 +608,7 @@ export default function TrackerWorkspacePage() {
         <div className="grid gap-6 lg:grid-cols-3">
           <Card className="lg:col-span-1 self-start">
             <CardHeader>
-              <h3 className="text-sm font-semibold text-slate-100">Add note</h3>
+              <h3 className="text-sm font-semibold text-stone-100">Add note</h3>
             </CardHeader>
             <CardBody>
               <form onSubmit={createNote} className="space-y-3">
@@ -620,20 +620,20 @@ export default function TrackerWorkspacePage() {
                   onChange={(e) => setNoteForm({ ...noteForm, body: e.target.value })}
                   rows={4}
                   placeholder="What's happening with this account..."
-                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+                  className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
                 />
                 <input
                   value={noteForm.author}
                   onChange={(e) => setNoteForm({ ...noteForm, author: e.target.value })}
                   placeholder="Author (optional)"
-                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+                  className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
                 />
-                <label className="flex items-center gap-2 text-sm text-slate-300">
+                <label className="flex items-center gap-2 text-sm text-stone-300">
                   <input
                     type="checkbox"
                     checked={noteForm.customer_visible}
                     onChange={(e) => setNoteForm({ ...noteForm, customer_visible: e.target.checked })}
-                    className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-teal-500 focus:ring-teal-500"
+                    className="h-4 w-4 rounded border-stone-600 bg-stone-800 text-rose-500 focus:ring-rose-500"
                   />
                   Customer-visible
                 </label>
@@ -649,16 +649,16 @@ export default function TrackerWorkspacePage() {
             ) : (
               <ul className="space-y-3">
                 {notes.map((n) => (
-                  <li key={n.id} className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+                  <li key={n.id} className="rounded-xl border border-stone-800 bg-stone-900/60 p-4">
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-2">
                         {n.pinned && <Badge tone="amber">Pinned</Badge>}
                         {n.customer_visible && <Badge tone="teal">Customer-visible</Badge>}
                       </div>
-                      <span className="text-xs text-slate-500">{fmtDate(n.created_at)}</span>
+                      <span className="text-xs text-stone-500">{fmtDate(n.created_at)}</span>
                     </div>
-                    <p className="mt-2 whitespace-pre-wrap text-sm text-slate-200">{n.body}</p>
-                    {n.author && <p className="mt-1 text-xs text-slate-500">— {n.author}</p>}
+                    <p className="mt-2 whitespace-pre-wrap text-sm text-stone-200">{n.body}</p>
+                    {n.author && <p className="mt-1 text-xs text-stone-500">— {n.author}</p>}
                   </li>
                 ))}
               </ul>
@@ -672,7 +672,7 @@ export default function TrackerWorkspacePage() {
         <div className="grid gap-6 lg:grid-cols-3">
           <Card className="lg:col-span-1 self-start">
             <CardHeader>
-              <h3 className="text-sm font-semibold text-slate-100">New task</h3>
+              <h3 className="text-sm font-semibold text-stone-100">New task</h3>
             </CardHeader>
             <CardBody>
               <form onSubmit={createTask} className="space-y-3">
@@ -683,29 +683,29 @@ export default function TrackerWorkspacePage() {
                   value={taskForm.title}
                   onChange={(e) => setTaskForm({ ...taskForm, title: e.target.value })}
                   placeholder="Task title"
-                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+                  className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
                 />
                 <textarea
                   value={taskForm.description}
                   onChange={(e) => setTaskForm({ ...taskForm, description: e.target.value })}
                   rows={2}
                   placeholder="Details (optional)"
-                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+                  className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
                 />
                 <div>
-                  <label className="mb-1 block text-xs text-slate-400">Due date</label>
+                  <label className="mb-1 block text-xs text-stone-400">Due date</label>
                   <input
                     type="date"
                     value={taskForm.due_date}
                     onChange={(e) => setTaskForm({ ...taskForm, due_date: e.target.value })}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+                    className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
                   />
                 </div>
                 {milestones.length > 0 && (
                   <select
                     value={taskForm.tracker_milestone_id}
                     onChange={(e) => setTaskForm({ ...taskForm, tracker_milestone_id: e.target.value })}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                    className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                   >
                     <option value="">No milestone</option>
                     {milestones.map((m) => (
@@ -729,7 +729,7 @@ export default function TrackerWorkspacePage() {
                 {tasks.map((t) => {
                   const done = ['done', 'complete', 'completed'].includes((t.status || '').toLowerCase())
                   return (
-                    <li key={t.id} className="flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-3">
+                    <li key={t.id} className="flex items-start gap-3 rounded-xl border border-stone-800 bg-stone-900/60 p-3">
                       <input
                         type="checkbox"
                         checked={done}
@@ -746,12 +746,12 @@ export default function TrackerWorkspacePage() {
                             setBusy(false)
                           }
                         }}
-                        className="mt-1 h-4 w-4 rounded border-slate-600 bg-slate-800 text-teal-500 focus:ring-teal-500"
+                        className="mt-1 h-4 w-4 rounded border-stone-600 bg-stone-800 text-rose-500 focus:ring-rose-500"
                       />
                       <div className="min-w-0 flex-1">
-                        <span className={`text-sm ${done ? 'text-slate-500 line-through' : 'text-slate-100'}`}>{t.title}</span>
-                        {t.description && <p className="text-xs text-slate-400">{t.description}</p>}
-                        {t.due_date && <p className="text-xs text-slate-500">Due {fmtDate(t.due_date)}</p>}
+                        <span className={`text-sm ${done ? 'text-stone-500 line-through' : 'text-stone-100'}`}>{t.title}</span>
+                        {t.description && <p className="text-xs text-stone-400">{t.description}</p>}
+                        {t.due_date && <p className="text-xs text-stone-500">Due {fmtDate(t.due_date)}</p>}
                       </div>
                       <Button
                         variant="ghost"
@@ -803,30 +803,30 @@ export default function TrackerWorkspacePage() {
             <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-2.5 text-sm text-rose-300">{formError}</div>
           )}
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Title</label>
+            <label className="mb-1 block text-sm font-medium text-stone-300">Title</label>
             <input
               value={blockerForm.title}
               onChange={(e) => setBlockerForm({ ...blockerForm, title: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
               autoFocus
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Description</label>
+            <label className="mb-1 block text-sm font-medium text-stone-300">Description</label>
             <textarea
               value={blockerForm.description}
               onChange={(e) => setBlockerForm({ ...blockerForm, description: e.target.value })}
               rows={2}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Severity</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Severity</label>
               <select
                 value={blockerForm.severity}
                 onChange={(e) => setBlockerForm({ ...blockerForm, severity: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
@@ -835,30 +835,30 @@ export default function TrackerWorkspacePage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Category</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Category</label>
               <input
                 value={blockerForm.category}
                 onChange={(e) => setBlockerForm({ ...blockerForm, category: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
                 placeholder="Legal, Technical..."
               />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Owner</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Owner</label>
               <input
                 value={blockerForm.owner}
                 onChange={(e) => setBlockerForm({ ...blockerForm, owner: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Milestone</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Milestone</label>
               <select
                 value={blockerForm.tracker_milestone_id}
                 onChange={(e) => setBlockerForm({ ...blockerForm, tracker_milestone_id: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 <option value="">None</option>
                 {milestones.map((m) => (
@@ -894,12 +894,12 @@ export default function TrackerWorkspacePage() {
       >
         {shareResult ? (
           <div className="space-y-3">
-            <p className="text-sm text-slate-300">Your read-only customer plan is live. Share this link:</p>
+            <p className="text-sm text-stone-300">Your read-only customer plan is live. Share this link:</p>
             <div className="flex items-center gap-2">
               <input
                 readOnly
                 value={shareUrl}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-teal-300 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-rose-300 focus:outline-none"
                 onFocus={(e) => e.currentTarget.select()}
               />
               <Button
@@ -912,7 +912,7 @@ export default function TrackerWorkspacePage() {
               </Button>
             </div>
             {shareUrl && (
-              <a href={shareUrl} target="_blank" rel="noreferrer" className="inline-block text-sm text-teal-400 hover:text-teal-300">
+              <a href={shareUrl} target="_blank" rel="noreferrer" className="inline-block text-sm text-rose-400 hover:text-rose-300">
                 Open plan ↗
               </a>
             )}
@@ -922,16 +922,16 @@ export default function TrackerWorkspacePage() {
             {formError && (
               <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-2.5 text-sm text-rose-300">{formError}</div>
             )}
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-stone-400">
               Generate a public, read-only milestone plan your customer can follow without logging in.
             </p>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Title</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Title</label>
               <input
                 value={shareForm.title}
                 onChange={(e) => setShareForm({ title: e.target.value })}
                 placeholder={account ? `${account.name} onboarding plan` : 'Onboarding plan'}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
               />
             </div>
           </form>

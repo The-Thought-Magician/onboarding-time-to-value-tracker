@@ -244,8 +244,8 @@ export default function TeamPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Team</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-xl font-semibold text-stone-100">Team</h1>
+          <p className="mt-1 text-sm text-stone-400">
             Onboarding managers and CSMs, their roles, and active implementation load.
           </p>
         </div>
@@ -279,12 +279,12 @@ export default function TeamPage() {
             placeholder="Search by name, email, role..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="min-w-[200px] flex-1 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+            className="min-w-[200px] flex-1 rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
           />
           <select
             value={roleFilter}
             onChange={(e) => setRoleFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+            className="rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
           >
             <option value="">All roles</option>
             {roles.map((r) => (
@@ -293,12 +293,12 @@ export default function TeamPage() {
               </option>
             ))}
           </select>
-          <label className="inline-flex cursor-pointer items-center gap-2 text-sm text-slate-300">
+          <label className="inline-flex cursor-pointer items-center gap-2 text-sm text-stone-300">
             <input
               type="checkbox"
               checked={showInactive}
               onChange={(e) => setShowInactive(e.target.checked)}
-              className="h-4 w-4 rounded border-slate-600 bg-slate-800 accent-teal-500"
+              className="h-4 w-4 rounded border-stone-600 bg-stone-800 accent-rose-500"
             />
             Show inactive
           </label>
@@ -332,17 +332,17 @@ export default function TeamPage() {
               {filtered.map((t) => {
                 const li = loadInfo(t)
                 const over = li.target > 0 && li.active > li.target
-                const barTone = over ? 'bg-rose-500' : li.pct > 85 ? 'bg-amber-500' : 'bg-teal-500'
+                const barTone = over ? 'bg-rose-500' : li.pct > 85 ? 'bg-amber-500' : 'bg-rose-500'
                 return (
                   <TR key={t.id}>
                     <TD>
                       <div className="flex items-center gap-3">
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal-500/15 text-xs font-semibold text-teal-300">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-rose-500/15 text-xs font-semibold text-rose-300">
                           {initials(t.name) || '?'}
                         </span>
                         <div>
-                          <div className="font-medium text-slate-100">{t.name}</div>
-                          {t.email && <div className="text-xs text-slate-500">{t.email}</div>}
+                          <div className="font-medium text-stone-100">{t.name}</div>
+                          {t.email && <div className="text-xs text-stone-500">{t.email}</div>}
                         </div>
                       </div>
                     </TD>
@@ -350,18 +350,18 @@ export default function TeamPage() {
                       {t.role ? (
                         <Badge tone={ROLE_TONE[t.role] ?? 'slate'}>{t.role}</Badge>
                       ) : (
-                        <span className="text-xs text-slate-500">—</span>
+                        <span className="text-xs text-stone-500">—</span>
                       )}
                     </TD>
                     <TD>
                       <div className="w-40">
                         <div className="flex items-center justify-between text-xs">
-                          <span className="text-slate-300 tabular-nums">
+                          <span className="text-stone-300 tabular-nums">
                             {li.active} / {li.target || '—'}
                           </span>
-                          <span className={over ? 'text-rose-300' : 'text-slate-500'}>{li.pct}%</span>
+                          <span className={over ? 'text-rose-300' : 'text-stone-500'}>{li.pct}%</span>
                         </div>
-                        <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-slate-800">
+                        <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-stone-800">
                           <div
                             className={`h-full rounded-full ${barTone}`}
                             style={{ width: `${Math.min(100, li.pct)}%` }}
@@ -419,31 +419,31 @@ export default function TeamPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Name</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               placeholder="e.g. Jordan Lee"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Email</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Email</label>
             <input
               type="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               placeholder="jordan@company.com"
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Role</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Role</label>
               <select
                 value={form.role}
                 onChange={(e) => setForm({ ...form, role: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 {ROLES.map((r) => (
                   <option key={r} value={r}>
@@ -453,28 +453,28 @@ export default function TeamPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Target load</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Target load</label>
               <input
                 type="number"
                 min={0}
                 value={form.target_load}
                 onChange={(e) => setForm({ ...form, target_load: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                 placeholder="Max active trackers"
               />
             </div>
           </div>
-          <label className="inline-flex cursor-pointer items-center gap-2 text-sm text-slate-300">
+          <label className="inline-flex cursor-pointer items-center gap-2 text-sm text-stone-300">
             <input
               type="checkbox"
               checked={form.active}
               onChange={(e) => setForm({ ...form, active: e.target.checked })}
-              className="h-4 w-4 rounded border-slate-600 bg-slate-800 accent-teal-500"
+              className="h-4 w-4 rounded border-stone-600 bg-stone-800 accent-rose-500"
             />
             Active member
           </label>
           {editing && (
-            <div className="border-t border-slate-800 pt-3">
+            <div className="border-t border-stone-800 pt-3">
               <Button
                 variant="danger"
                 size="sm"

@@ -237,8 +237,8 @@ export default function AccountsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-100">Accounts</h1>
-          <p className="mt-1 text-sm text-slate-400">Customer directory and onboarding portfolio.</p>
+          <h1 className="text-2xl font-bold tracking-tight text-stone-100">Accounts</h1>
+          <p className="mt-1 text-sm text-stone-400">Customer directory and onboarding portfolio.</p>
         </div>
         <Button onClick={() => { setFormError(''); setCreateOpen(true) }}>+ New account</Button>
       </div>
@@ -263,12 +263,12 @@ export default function AccountsPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search name, domain, plan..."
-            className="min-w-[220px] flex-1 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+            className="min-w-[220px] flex-1 rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
           />
           <select
             value={segFilter}
             onChange={(e) => setSegFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+            className="rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
           >
             <option value="">All segments</option>
             {segments.map((s) => (
@@ -278,7 +278,7 @@ export default function AccountsPage() {
           <select
             value={healthFilter}
             onChange={(e) => setHealthFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+            className="rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
           >
             <option value="">All health</option>
             {HEALTHS.map((h) => (
@@ -292,8 +292,8 @@ export default function AccountsPage() {
       </Card>
 
       {selected.size > 0 && (
-        <div className="flex items-center justify-between rounded-lg border border-teal-500/30 bg-teal-500/5 px-4 py-2.5 text-sm">
-          <span className="text-slate-200">{selected.size} selected</span>
+        <div className="flex items-center justify-between rounded-lg border border-rose-500/30 bg-rose-500/5 px-4 py-2.5 text-sm">
+          <span className="text-stone-200">{selected.size} selected</span>
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" onClick={() => setSelected(new Set())}>Clear selection</Button>
             <Button variant="danger" size="sm" onClick={handleBulkDelete} disabled={saving}>Delete selected</Button>
@@ -316,7 +316,7 @@ export default function AccountsPage() {
               <THead>
                 <TR>
                   <TH className="w-10">
-                    <input type="checkbox" checked={allSelected} onChange={toggleAll} className="h-4 w-4 rounded border-slate-600 bg-slate-800 accent-teal-500" />
+                    <input type="checkbox" checked={allSelected} onChange={toggleAll} className="h-4 w-4 rounded border-stone-600 bg-stone-800 accent-rose-500" />
                   </TH>
                   <TH>Account</TH>
                   <TH>Segment</TH>
@@ -331,11 +331,11 @@ export default function AccountsPage() {
                 {filtered.map((a) => (
                   <TR key={a.id}>
                     <TD>
-                      <input type="checkbox" checked={selected.has(a.id)} onChange={() => toggleOne(a.id)} className="h-4 w-4 rounded border-slate-600 bg-slate-800 accent-teal-500" />
+                      <input type="checkbox" checked={selected.has(a.id)} onChange={() => toggleOne(a.id)} className="h-4 w-4 rounded border-stone-600 bg-stone-800 accent-rose-500" />
                     </TD>
-                    <TD className="font-medium text-slate-100">
-                      <Link href={`/dashboard/accounts/${a.id}`} className="hover:text-teal-300">{a.name || 'Untitled'}</Link>
-                      {a.domain && <div className="text-xs text-slate-500">{a.domain}</div>}
+                    <TD className="font-medium text-stone-100">
+                      <Link href={`/dashboard/accounts/${a.id}`} className="hover:text-rose-300">{a.name || 'Untitled'}</Link>
+                      {a.domain && <div className="text-xs text-stone-500">{a.domain}</div>}
                     </TD>
                     <TD>{a.segment_id ? (segName[a.segment_id] || '—') : '—'}</TD>
                     <TD>{a.plan || '—'}</TD>
@@ -372,29 +372,29 @@ export default function AccountsPage() {
         <form id="create-account-form" onSubmit={handleCreate} className="space-y-4">
           {formError && <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">{formError}</div>}
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Account name *</label>
+            <label className="mb-1 block text-sm font-medium text-stone-300">Account name *</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               autoFocus
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
               placeholder="Acme Corp"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Domain</label>
-              <input value={form.domain} onChange={(e) => setForm({ ...form, domain: e.target.value })} className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none" placeholder="acme.com" />
+              <label className="mb-1 block text-sm font-medium text-stone-300">Domain</label>
+              <input value={form.domain} onChange={(e) => setForm({ ...form, domain: e.target.value })} className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none" placeholder="acme.com" />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Plan</label>
-              <input value={form.plan} onChange={(e) => setForm({ ...form, plan: e.target.value })} className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none" placeholder="Enterprise" />
+              <label className="mb-1 block text-sm font-medium text-stone-300">Plan</label>
+              <input value={form.plan} onChange={(e) => setForm({ ...form, plan: e.target.value })} className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none" placeholder="Enterprise" />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Segment</label>
-              <select value={form.segment_id} onChange={(e) => setForm({ ...form, segment_id: e.target.value })} className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none">
+              <label className="mb-1 block text-sm font-medium text-stone-300">Segment</label>
+              <select value={form.segment_id} onChange={(e) => setForm({ ...form, segment_id: e.target.value })} className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none">
                 <option value="">None</option>
                 {segments.map((s) => (
                   <option key={s.id} value={s.id}>{s.name}</option>
@@ -402,8 +402,8 @@ export default function AccountsPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Health</label>
-              <select value={form.health} onChange={(e) => setForm({ ...form, health: e.target.value })} className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none">
+              <label className="mb-1 block text-sm font-medium text-stone-300">Health</label>
+              <select value={form.health} onChange={(e) => setForm({ ...form, health: e.target.value })} className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none">
                 {HEALTHS.map((h) => (
                   <option key={h} value={h}>{h}</option>
                 ))}
@@ -412,12 +412,12 @@ export default function AccountsPage() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">ARR (USD)</label>
-              <input value={form.arr} onChange={(e) => setForm({ ...form, arr: e.target.value })} type="number" min="0" step="0.01" className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none" placeholder="50000" />
+              <label className="mb-1 block text-sm font-medium text-stone-300">ARR (USD)</label>
+              <input value={form.arr} onChange={(e) => setForm({ ...form, arr: e.target.value })} type="number" min="0" step="0.01" className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none" placeholder="50000" />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Target go-live</label>
-              <input value={form.target_go_live} onChange={(e) => setForm({ ...form, target_go_live: e.target.value })} type="date" className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none" />
+              <label className="mb-1 block text-sm font-medium text-stone-300">Target go-live</label>
+              <input value={form.target_go_live} onChange={(e) => setForm({ ...form, target_go_live: e.target.value })} type="date" className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none" />
             </div>
           </div>
         </form>

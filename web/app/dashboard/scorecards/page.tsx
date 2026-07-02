@@ -192,8 +192,8 @@ export default function ScorecardsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Manager Scorecards</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-xl font-semibold text-stone-100">Manager Scorecards</h1>
+          <p className="mt-1 text-sm text-stone-400">
             On-time delivery, time-to-value, and active load across the CS team.
           </p>
         </div>
@@ -223,18 +223,18 @@ export default function ScorecardsPage() {
 
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-sm font-semibold text-slate-200">Scorecards</h2>
+          <h2 className="text-sm font-semibold text-stone-200">Scorecards</h2>
           <div className="flex flex-wrap items-center gap-2">
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search managers..."
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
             />
             <select
               value={sortKey}
               onChange={(e) => setSortKey(e.target.value as typeof sortKey)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="arr">Sort: ARR</option>
               <option value="ontime">Sort: On-Time</option>
@@ -268,14 +268,14 @@ export default function ScorecardsPage() {
                 {rows.map((r) => (
                   <TR key={r.id || r.name}>
                     <TD>
-                      <div className="font-medium text-slate-100">{r.name}</div>
-                      {r.email && <div className="text-xs text-slate-500">{r.email}</div>}
+                      <div className="font-medium text-stone-100">{r.name}</div>
+                      {r.email && <div className="text-xs text-stone-500">{r.email}</div>}
                     </TD>
                     <TD className="text-right">
                       {r.onTime > 0 ? (
                         <Badge tone={rateTone(r.onTime)}>{fmtPct(r.onTime)}</Badge>
                       ) : (
-                        <span className="text-slate-600">—</span>
+                        <span className="text-stone-600">—</span>
                       )}
                     </TD>
                     <TD className="text-right tabular-nums">{fmtDays(r.medianTtv)}</TD>
@@ -302,8 +302,8 @@ export default function ScorecardsPage() {
 
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Team Capacity</h2>
-          <p className="mt-1 text-xs text-slate-500">Active onboarding load vs. target load per member.</p>
+          <h2 className="text-sm font-semibold text-stone-200">Team Capacity</h2>
+          <p className="mt-1 text-xs text-stone-500">Active onboarding load vs. target load per member.</p>
         </CardHeader>
         <CardBody>
           {capRows.length === 0 ? (
@@ -317,22 +317,22 @@ export default function ScorecardsPage() {
                 const pct = c.target > 0 ? Math.min((c.active / c.target) * 100, 130) : c.active > 0 ? 100 : 0
                 const tone = utilTone(c.util)
                 const barColor =
-                  tone === 'red' ? 'bg-rose-500' : tone === 'amber' ? 'bg-amber-400' : 'bg-teal-400'
+                  tone === 'red' ? 'bg-rose-500' : tone === 'amber' ? 'bg-amber-400' : 'bg-rose-400'
                 return (
                   <div key={c.id || c.name} className="space-y-1.5">
                     <div className="flex items-center justify-between gap-3 text-sm">
                       <div className="flex items-center gap-2">
-                        <span className="font-medium text-slate-200">{c.name}</span>
-                        {c.role && <span className="text-xs text-slate-500">{c.role}</span>}
+                        <span className="font-medium text-stone-200">{c.name}</span>
+                        {c.role && <span className="text-xs text-stone-500">{c.role}</span>}
                       </div>
-                      <div className="flex items-center gap-2 tabular-nums text-slate-400">
+                      <div className="flex items-center gap-2 tabular-nums text-stone-400">
                         <span>
                           {c.active} / {c.target || '∞'}
                         </span>
                         <Badge tone={tone}>{Math.round((c.util || 0) * 100)}%</Badge>
                       </div>
                     </div>
-                    <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-stone-800">
                       <div
                         className={`h-full rounded-full ${barColor} transition-all`}
                         style={{ width: `${Math.max(pct, c.active > 0 ? 4 : 0)}%` }}
@@ -378,16 +378,16 @@ function ManagerDetail({ detail }: { detail: ScorecardDetail }) {
   return (
     <div className="space-y-5">
       <div>
-        <div className="text-base font-semibold text-slate-100">{name}</div>
-        {manager.email ? <div className="text-xs text-slate-500">{String(manager.email)}</div> : null}
+        <div className="text-base font-semibold text-stone-100">{name}</div>
+        {manager.email ? <div className="text-xs text-stone-500">{String(manager.email)}</div> : null}
       </div>
 
       {metricEntries.length > 0 && (
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {metricEntries.map(([k, v]) => (
-            <div key={k} className="rounded-lg border border-slate-800 bg-slate-950/60 px-3 py-2">
-              <div className="text-[10px] uppercase tracking-wide text-slate-500">{k.replace(/_/g, ' ')}</div>
-              <div className="mt-1 text-sm font-semibold tabular-nums text-slate-100">
+            <div key={k} className="rounded-lg border border-stone-800 bg-stone-950/60 px-3 py-2">
+              <div className="text-[10px] uppercase tracking-wide text-stone-500">{k.replace(/_/g, ' ')}</div>
+              <div className="mt-1 text-sm font-semibold tabular-nums text-stone-100">
                 {typeof v === 'number'
                   ? k.toLowerCase().includes('arr')
                     ? fmtCurrency(v)
@@ -404,11 +404,11 @@ function ManagerDetail({ detail }: { detail: ScorecardDetail }) {
       )}
 
       <div>
-        <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
+        <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
           Portfolio ({trackers.length})
         </div>
         {trackers.length === 0 ? (
-          <div className="rounded-lg border border-dashed border-slate-800 px-4 py-6 text-center text-sm text-slate-500">
+          <div className="rounded-lg border border-dashed border-stone-800 px-4 py-6 text-center text-sm text-stone-500">
             No active trackers assigned.
           </div>
         ) : (
@@ -425,12 +425,12 @@ function ManagerDetail({ detail }: { detail: ScorecardDetail }) {
               return (
                 <div
                   key={(t.id as string) || i}
-                  className="flex items-center justify-between gap-3 rounded-lg border border-slate-800 bg-slate-950/40 px-3 py-2"
+                  className="flex items-center justify-between gap-3 rounded-lg border border-stone-800 bg-stone-950/40 px-3 py-2"
                 >
                   <div className="min-w-0">
-                    <div className="truncate text-sm font-medium text-slate-200">{tName}</div>
-                    <div className="mt-1 h-1.5 w-32 overflow-hidden rounded-full bg-slate-800">
-                      <div className="h-full rounded-full bg-teal-400" style={{ width: `${Math.min(progress, 100)}%` }} />
+                    <div className="truncate text-sm font-medium text-stone-200">{tName}</div>
+                    <div className="mt-1 h-1.5 w-32 overflow-hidden rounded-full bg-stone-800">
+                      <div className="h-full rounded-full bg-rose-400" style={{ width: `${Math.min(progress, 100)}%` }} />
                     </div>
                   </div>
                   <div className="flex items-center gap-2">

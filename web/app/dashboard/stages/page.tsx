@@ -187,8 +187,8 @@ export default function StagesPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Stage Library</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-xl font-semibold text-stone-100">Stage Library</h1>
+          <p className="mt-1 text-sm text-stone-400">
             Reusable onboarding stages with target durations, owners, and checklists. Drop these into journey templates.
           </p>
         </div>
@@ -217,12 +217,12 @@ export default function StagesPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search stages..."
-              className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+              className="w-56 rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
             />
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="">All categories</option>
               {CATEGORIES.map((c) => (
@@ -232,7 +232,7 @@ export default function StagesPage() {
               ))}
             </select>
           </div>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-stone-500">
             {filtered.length} of {stages.length}
           </span>
         </CardHeader>
@@ -265,22 +265,22 @@ export default function StagesPage() {
               <TBody>
                 {filtered.map((s) => (
                   <TR key={s.id}>
-                    <TD className="font-medium text-slate-100">{s.name}</TD>
+                    <TD className="font-medium text-stone-100">{s.name}</TD>
                     <TD>
                       {s.category ? (
                         <Badge tone={CATEGORY_TONE[s.category] ?? 'slate'}>{s.category.replace(/_/g, ' ')}</Badge>
                       ) : (
-                        <span className="text-slate-600">—</span>
+                        <span className="text-stone-600">—</span>
                       )}
                     </TD>
-                    <TD>{s.owner_role ? s.owner_role.replace(/_/g, ' ') : <span className="text-slate-600">—</span>}</TD>
+                    <TD>{s.owner_role ? s.owner_role.replace(/_/g, ' ') : <span className="text-stone-600">—</span>}</TD>
                     <TD className="text-right tabular-nums">{s.default_target_days != null ? `${s.default_target_days}d` : '—'}</TD>
                     <TD className="text-right tabular-nums">{s.weight ?? '—'}</TD>
                     <TD>
                       {Array.isArray(s.checklist) && s.checklist.length > 0 ? (
-                        <span className="text-slate-400">{s.checklist.length} items</span>
+                        <span className="text-stone-400">{s.checklist.length} items</span>
                       ) : (
-                        <span className="text-slate-600">—</span>
+                        <span className="text-stone-600">—</span>
                       )}
                     </TD>
                     <TD className="text-right">
@@ -321,21 +321,21 @@ export default function StagesPage() {
             <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">{formError}</div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Name</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="e.g. Technical Integration"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Category</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Category</label>
               <select
                 value={form.category}
                 onChange={(e) => setForm({ ...form, category: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 {CATEGORIES.map((c) => (
                   <option key={c} value={c}>
@@ -345,11 +345,11 @@ export default function StagesPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Owner role</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Owner role</label>
               <select
                 value={form.owner_role}
                 onChange={(e) => setForm({ ...form, owner_role: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 <option value="">Unassigned</option>
                 {OWNER_ROLES.map((r) => (
@@ -362,35 +362,35 @@ export default function StagesPage() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Default target (days)</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Default target (days)</label>
               <input
                 type="number"
                 min={0}
                 value={form.default_target_days}
                 onChange={(e) => setForm({ ...form, default_target_days: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Weight</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Weight</label>
               <input
                 type="number"
                 min={0}
                 step="0.5"
                 value={form.weight}
                 onChange={(e) => setForm({ ...form, weight: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               />
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Checklist (one item per line)</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Checklist (one item per line)</label>
             <textarea
               value={form.checklist}
               onChange={(e) => setForm({ ...form, checklist: e.target.value })}
               rows={4}
               placeholder={'Confirm data access\nSet up SSO\nValidate first import'}
-              className="w-full resize-y rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+              className="w-full resize-y rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
             />
           </div>
         </div>

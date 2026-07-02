@@ -271,8 +271,8 @@ export default function NotificationsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Notifications</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-xl font-semibold text-stone-100">Notifications</h1>
+          <p className="mt-1 text-sm text-stone-400">
             Alerts from at-risk and overdue onboarding state, plus the rules that drive them.
           </p>
         </div>
@@ -306,18 +306,18 @@ export default function NotificationsPage() {
         <Stat label="Active rules" value={rules.filter((r) => r.active).length} tone="green" />
       </div>
 
-      <div className="flex items-center gap-2 border-b border-slate-800">
+      <div className="flex items-center gap-2 border-b border-stone-800">
         <button
           className={`-mb-px border-b-2 px-3 py-2 text-sm font-medium transition-colors ${
             tab === 'feed'
-              ? 'border-teal-500 text-teal-300'
-              : 'border-transparent text-slate-400 hover:text-slate-200'
+              ? 'border-rose-500 text-rose-300'
+              : 'border-transparent text-stone-400 hover:text-stone-200'
           }`}
           onClick={() => setTab('feed')}
         >
           Feed
           {unreadCount > 0 && (
-            <span className="ml-2 rounded-full bg-teal-500/20 px-1.5 py-0.5 text-[11px] text-teal-300">
+            <span className="ml-2 rounded-full bg-rose-500/20 px-1.5 py-0.5 text-[11px] text-rose-300">
               {unreadCount}
             </span>
           )}
@@ -325,8 +325,8 @@ export default function NotificationsPage() {
         <button
           className={`-mb-px border-b-2 px-3 py-2 text-sm font-medium transition-colors ${
             tab === 'rules'
-              ? 'border-teal-500 text-teal-300'
-              : 'border-transparent text-slate-400 hover:text-slate-200'
+              ? 'border-rose-500 text-rose-300'
+              : 'border-transparent text-stone-400 hover:text-stone-200'
           }`}
           onClick={() => setTab('rules')}
         >
@@ -337,16 +337,16 @@ export default function NotificationsPage() {
       {tab === 'feed' ? (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <label className="flex items-center gap-2 text-sm text-slate-300">
+            <label className="flex items-center gap-2 text-sm text-stone-300">
               <input
                 type="checkbox"
                 checked={unreadOnly}
                 onChange={(e) => setUnreadOnly(e.target.checked)}
-                className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-teal-500 focus:ring-teal-500"
+                className="h-4 w-4 rounded border-stone-600 bg-stone-800 text-rose-500 focus:ring-rose-500"
               />
               Unread only
             </label>
-            <span className="text-xs text-slate-500">{visibleNotifs.length} shown</span>
+            <span className="text-xs text-stone-500">{visibleNotifs.length} shown</span>
           </div>
 
           {visibleNotifs.length === 0 ? (
@@ -362,28 +362,28 @@ export default function NotificationsPage() {
             />
           ) : (
             <Card>
-              <ul className="divide-y divide-slate-800">
+              <ul className="divide-y divide-stone-800">
                 {visibleNotifs.map((n) => {
                   const inner = (
                     <div className="flex items-start gap-3 px-5 py-4">
                       <span
                         className={`mt-1.5 h-2 w-2 flex-shrink-0 rounded-full ${
-                          n.read ? 'bg-slate-700' : 'bg-teal-400'
+                          n.read ? 'bg-stone-700' : 'bg-rose-400'
                         }`}
                       />
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className={`text-sm font-medium ${n.read ? 'text-slate-400' : 'text-slate-100'}`}>
+                          <span className={`text-sm font-medium ${n.read ? 'text-stone-400' : 'text-stone-100'}`}>
                             {n.title}
                           </span>
                           <Badge tone={TYPE_TONE[n.type] ?? 'slate'}>{n.type.replace(/_/g, ' ')}</Badge>
                         </div>
-                        {n.body && <p className="mt-1 text-sm text-slate-400">{n.body}</p>}
-                        <div className="mt-1 text-xs text-slate-500">{fmtWhen(n.created_at)}</div>
+                        {n.body && <p className="mt-1 text-sm text-stone-400">{n.body}</p>}
+                        <div className="mt-1 text-xs text-stone-500">{fmtWhen(n.created_at)}</div>
                       </div>
                       {!n.read && (
                         <button
-                          className="flex-shrink-0 text-xs text-teal-400 hover:text-teal-300"
+                          className="flex-shrink-0 text-xs text-rose-400 hover:text-rose-300"
                           onClick={(e) => {
                             e.preventDefault()
                             markRead(n)
@@ -395,7 +395,7 @@ export default function NotificationsPage() {
                     </div>
                   )
                   return (
-                    <li key={n.id} className="transition-colors hover:bg-slate-800/30">
+                    <li key={n.id} className="transition-colors hover:bg-stone-800/30">
                       {n.link ? (
                         <Link href={n.link} onClick={() => markRead(n)} className="block">
                           {inner}
@@ -413,7 +413,7 @@ export default function NotificationsPage() {
       ) : (
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Alert Rules</h2>
+            <h2 className="text-sm font-semibold text-stone-200">Alert Rules</h2>
           </CardHeader>
           {rules.length === 0 ? (
             <CardBody>
@@ -438,11 +438,11 @@ export default function NotificationsPage() {
               <TBody>
                 {rules.map((r) => (
                   <TR key={r.id}>
-                    <TD className="font-medium text-slate-100">{r.name}</TD>
+                    <TD className="font-medium text-stone-100">{r.name}</TD>
                     <TD>
-                      <span className="text-slate-300">{metricLabel(r.metric)}</span>{' '}
-                      <span className="font-mono text-teal-300">{comparatorLabel(r.comparator)}</span>{' '}
-                      <span className="tabular-nums text-slate-200">{r.threshold}</span>
+                      <span className="text-stone-300">{metricLabel(r.metric)}</span>{' '}
+                      <span className="font-mono text-rose-300">{comparatorLabel(r.comparator)}</span>{' '}
+                      <span className="tabular-nums text-stone-200">{r.threshold}</span>
                     </TD>
                     <TD>
                       <Badge tone={SEVERITY_TONE[r.severity] ?? 'slate'}>
@@ -494,21 +494,21 @@ export default function NotificationsPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Name</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               placeholder="e.g. Overdue more than a week"
             />
           </div>
           <div className="grid grid-cols-3 gap-3">
             <div className="col-span-1">
-              <label className="mb-1 block text-xs font-medium text-slate-400">Comparator</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Comparator</label>
               <select
                 value={form.comparator}
                 onChange={(e) => setForm({ ...form, comparator: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 {COMPARATORS.map((c) => (
                   <option key={c.value} value={c.value}>
@@ -518,11 +518,11 @@ export default function NotificationsPage() {
               </select>
             </div>
             <div className="col-span-2">
-              <label className="mb-1 block text-xs font-medium text-slate-400">Metric</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Metric</label>
               <select
                 value={form.metric}
                 onChange={(e) => setForm({ ...form, metric: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 {METRICS.map((m) => (
                   <option key={m.value} value={m.value}>
@@ -534,20 +534,20 @@ export default function NotificationsPage() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Threshold</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Threshold</label>
               <input
                 type="number"
                 value={form.threshold}
                 onChange={(e) => setForm({ ...form, threshold: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Severity</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Severity</label>
               <select
                 value={form.severity}
                 onChange={(e) => setForm({ ...form, severity: e.target.value as Severity })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 {SEVERITIES.map((s) => (
                   <option key={s} value={s}>
@@ -557,12 +557,12 @@ export default function NotificationsPage() {
               </select>
             </div>
           </div>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-stone-300">
             <input
               type="checkbox"
               checked={form.active}
               onChange={(e) => setForm({ ...form, active: e.target.checked })}
-              className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-teal-500 focus:ring-teal-500"
+              className="h-4 w-4 rounded border-stone-600 bg-stone-800 text-rose-500 focus:ring-rose-500"
             />
             Active
           </label>

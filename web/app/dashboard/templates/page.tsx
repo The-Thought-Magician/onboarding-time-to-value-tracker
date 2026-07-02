@@ -170,8 +170,8 @@ export default function TemplatesPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-100">Journey Templates</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-bold text-stone-100">Journey Templates</h1>
+          <p className="mt-1 text-sm text-stone-400">
             Reusable onboarding playbooks. Define the milestones every account moves through on its way to first value.
           </p>
         </div>
@@ -195,12 +195,12 @@ export default function TemplatesPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search templates..."
-            className="min-w-[200px] flex-1 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+            className="min-w-[200px] flex-1 rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
           />
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+            className="rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
           >
             <option value="all">All statuses</option>
             <option value="draft">Draft</option>
@@ -211,7 +211,7 @@ export default function TemplatesPage() {
           <select
             value={segmentFilter}
             onChange={(e) => setSegmentFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+            className="rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
           >
             <option value="all">All segments</option>
             {segments.map((s) => (
@@ -241,12 +241,12 @@ export default function TemplatesPage() {
               {filtered.map((t) => (
                 <div
                   key={t.id}
-                  className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/60 p-4 transition-colors hover:border-teal-500/40"
+                  className="flex flex-col rounded-xl border border-stone-800 bg-stone-900/60 p-4 transition-colors hover:border-rose-500/40"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <Link
                       href={`/dashboard/templates/${t.id}`}
-                      className="text-base font-semibold text-slate-100 hover:text-teal-300"
+                      className="text-base font-semibold text-stone-100 hover:text-rose-300"
                     >
                       {t.name}
                     </Link>
@@ -255,20 +255,20 @@ export default function TemplatesPage() {
                       <Badge tone={statusTone(t.status)}>{t.status || 'draft'}</Badge>
                     </div>
                   </div>
-                  {t.description && <p className="mt-2 line-clamp-2 text-sm text-slate-400">{t.description}</p>}
-                  <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-400">
-                    {t.version != null && <span className="rounded bg-slate-800 px-2 py-0.5">v{t.version}</span>}
+                  {t.description && <p className="mt-2 line-clamp-2 text-sm text-stone-400">{t.description}</p>}
+                  <div className="mt-3 flex flex-wrap gap-2 text-xs text-stone-400">
+                    {t.version != null && <span className="rounded bg-stone-800 px-2 py-0.5">v{t.version}</span>}
                     {t.total_target_days != null && (
-                      <span className="rounded bg-slate-800 px-2 py-0.5">{t.total_target_days}d target</span>
+                      <span className="rounded bg-stone-800 px-2 py-0.5">{t.total_target_days}d target</span>
                     )}
                     {segmentName(t.segment_id) && (
-                      <span className="rounded bg-slate-800 px-2 py-0.5">{segmentName(t.segment_id)}</span>
+                      <span className="rounded bg-stone-800 px-2 py-0.5">{segmentName(t.segment_id)}</span>
                     )}
                     {productName(t.product_id) && (
-                      <span className="rounded bg-slate-800 px-2 py-0.5">{productName(t.product_id)}</span>
+                      <span className="rounded bg-stone-800 px-2 py-0.5">{productName(t.product_id)}</span>
                     )}
                   </div>
-                  <div className="mt-4 flex items-center gap-2 border-t border-slate-800 pt-3">
+                  <div className="mt-4 flex items-center gap-2 border-t border-stone-800 pt-3">
                     <Link href={`/dashboard/templates/${t.id}`} className="flex-1">
                       <Button variant="secondary" size="sm" className="w-full">
                         Edit milestones
@@ -321,32 +321,32 @@ export default function TemplatesPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Name</label>
+            <label className="mb-1 block text-sm font-medium text-stone-300">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
               placeholder="Enterprise Onboarding"
               autoFocus
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Description</label>
+            <label className="mb-1 block text-sm font-medium text-stone-300">Description</label>
             <textarea
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={2}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
               placeholder="What this journey covers"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Segment</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Segment</label>
               <select
                 value={form.segment_id}
                 onChange={(e) => setForm({ ...form, segment_id: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 <option value="">— None —</option>
                 {segments.map((s) => (
@@ -357,11 +357,11 @@ export default function TemplatesPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Product</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Product</label>
               <select
                 value={form.product_id}
                 onChange={(e) => setForm({ ...form, product_id: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 <option value="">— None —</option>
                 {products.map((p) => (
@@ -374,22 +374,22 @@ export default function TemplatesPage() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Total target days</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Total target days</label>
               <input
                 type="number"
                 min={0}
                 value={form.total_target_days}
                 onChange={(e) => setForm({ ...form, total_target_days: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
                 placeholder="30"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Status</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Status</label>
               <select
                 value={form.status}
                 onChange={(e) => setForm({ ...form, status: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 <option value="draft">Draft</option>
                 <option value="active">Active</option>

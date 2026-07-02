@@ -275,8 +275,8 @@ export default function RiskPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">At-Risk Triage Queue</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-xl font-semibold text-stone-100">At-Risk Triage Queue</h1>
+          <p className="mt-1 text-sm text-stone-400">
             Prioritize onboardings drifting off track and assign owners to intervene.
           </p>
         </div>
@@ -286,10 +286,10 @@ export default function RiskPage() {
       </div>
 
       {flash && (
-        <Card className="border-teal-500/40">
+        <Card className="border-rose-500/40">
           <CardBody className="flex items-center justify-between gap-4">
-            <span className="text-sm text-teal-300">{flash}</span>
-            <button onClick={() => setFlash(null)} className="text-slate-500 hover:text-slate-200">
+            <span className="text-sm text-rose-300">{flash}</span>
+            <button onClick={() => setFlash(null)} className="text-stone-500 hover:text-stone-200">
               ✕
             </button>
           </CardBody>
@@ -317,10 +317,10 @@ export default function RiskPage() {
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-2">
-            <h2 className="text-sm font-semibold text-slate-200">Queue</h2>
+            <h2 className="text-sm font-semibold text-stone-200">Queue</h2>
             {selected.size > 0 && (
-              <div className="flex items-center gap-2 rounded-lg border border-teal-500/30 bg-teal-500/10 px-2 py-1">
-                <span className="text-xs text-teal-300">{selected.size} selected</span>
+              <div className="flex items-center gap-2 rounded-lg border border-rose-500/30 bg-rose-500/10 px-2 py-1">
+                <span className="text-xs text-rose-300">{selected.size} selected</span>
                 <Button variant="ghost" size="sm" onClick={() => bulkTriage('investigating')}>
                   Investigate
                 </Button>
@@ -338,12 +338,12 @@ export default function RiskPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search account / reason..."
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-500 focus:border-teal-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 placeholder-stone-500 focus:border-rose-500 focus:outline-none"
             />
             <select
               value={triageFilter}
               onChange={(e) => setTriageFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="all">All triage</option>
               {TRIAGE_STATUSES.map((s) => (
@@ -355,7 +355,7 @@ export default function RiskPage() {
             <select
               value={severityFilter}
               onChange={(e) => setSeverityFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="all">All severities</option>
               {['critical', 'at_risk', 'watch'].map((s) => (
@@ -367,12 +367,12 @@ export default function RiskPage() {
                 </option>
               ))}
             </select>
-            <label className="flex items-center gap-1.5 text-xs text-slate-400">
+            <label className="flex items-center gap-1.5 text-xs text-stone-400">
               <input
                 type="checkbox"
                 checked={showSnoozed}
                 onChange={(e) => setShowSnoozed(e.target.checked)}
-                className="rounded border-slate-600 bg-slate-950 text-teal-500 focus:ring-teal-500"
+                className="rounded border-stone-600 bg-stone-950 text-rose-500 focus:ring-rose-500"
               />
               Show snoozed
             </label>
@@ -405,7 +405,7 @@ export default function RiskPage() {
                       type="checkbox"
                       checked={selected.size === filtered.length && filtered.length > 0}
                       onChange={toggleSelectAll}
-                      className="rounded border-slate-600 bg-slate-950 text-teal-500 focus:ring-teal-500"
+                      className="rounded border-stone-600 bg-stone-950 text-rose-500 focus:ring-rose-500"
                     />
                   </TH>
                   <TH>Account</TH>
@@ -425,18 +425,18 @@ export default function RiskPage() {
                   const snoozed = isSnoozed(it)
                   const busy = busyId === it.id
                   return (
-                    <TR key={it.id} className={selected.has(it.id) ? 'bg-teal-500/5' : ''}>
+                    <TR key={it.id} className={selected.has(it.id) ? 'bg-rose-500/5' : ''}>
                       <TD>
                         <input
                           type="checkbox"
                           checked={selected.has(it.id)}
                           onChange={() => toggleSelect(it.id)}
-                          className="rounded border-slate-600 bg-slate-950 text-teal-500 focus:ring-teal-500"
+                          className="rounded border-stone-600 bg-stone-950 text-rose-500 focus:ring-rose-500"
                         />
                       </TD>
                       <TD>
                         <div className="flex items-center gap-2">
-                          <span className="font-medium text-slate-100">
+                          <span className="font-medium text-stone-100">
                             {str(it.account_name, it.name) || 'Account'}
                           </span>
                           {snoozed && <Badge tone="slate">snoozed</Badge>}
@@ -444,13 +444,13 @@ export default function RiskPage() {
                       </TD>
                       <TD className="text-right">
                         <div className="flex items-center justify-end gap-2">
-                          <div className="h-1.5 w-16 overflow-hidden rounded-full bg-slate-800">
+                          <div className="h-1.5 w-16 overflow-hidden rounded-full bg-stone-800">
                             <div
                               className={`h-full rounded-full ${score >= 70 ? 'bg-rose-500' : score >= 40 ? 'bg-amber-400' : 'bg-sky-400'}`}
                               style={{ width: `${Math.min(score, 100)}%` }}
                             />
                           </div>
-                          <span className="tabular-nums text-slate-200">{Math.round(score)}</span>
+                          <span className="tabular-nums text-stone-200">{Math.round(score)}</span>
                         </div>
                       </TD>
                       <TD>
@@ -461,14 +461,14 @@ export default function RiskPage() {
                         )}
                       </TD>
                       <TD className="max-w-xs">
-                        <span className="line-clamp-2 text-xs text-slate-400">{str(it.reason) || '—'}</span>
+                        <span className="line-clamp-2 text-xs text-stone-400">{str(it.reason) || '—'}</span>
                       </TD>
                       <TD>
                         <select
                           value={assignee}
                           disabled={busy}
                           onChange={(e) => setAssignee(it.id, e.target.value)}
-                          className="rounded-lg border border-slate-700 bg-slate-950 px-2 py-1 text-xs text-slate-200 focus:border-teal-500 focus:outline-none"
+                          className="rounded-lg border border-stone-700 bg-stone-950 px-2 py-1 text-xs text-stone-200 focus:border-rose-500 focus:outline-none"
                         >
                           <option value="">Unassigned</option>
                           {team.map((t) => (
@@ -483,7 +483,7 @@ export default function RiskPage() {
                           value={triage}
                           disabled={busy}
                           onChange={(e) => setTriage(it.id, e.target.value)}
-                          className="rounded-lg border border-slate-700 bg-slate-950 px-2 py-1 text-xs text-slate-200 focus:border-teal-500 focus:outline-none"
+                          className="rounded-lg border border-stone-700 bg-stone-950 px-2 py-1 text-xs text-stone-200 focus:border-rose-500 focus:outline-none"
                         >
                           {TRIAGE_STATUSES.map((s) => (
                             <option key={s} value={s}>
@@ -529,15 +529,15 @@ export default function RiskPage() {
         }
       >
         <div className="space-y-3">
-          <p className="text-sm text-slate-400">Hide this item from the active queue until the chosen date.</p>
+          <p className="text-sm text-stone-400">Hide this item from the active queue until the chosen date.</p>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Snooze until</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Snooze until</label>
             <input
               type="date"
               value={snoozeDate}
               min={new Date().toISOString().slice(0, 10)}
               onChange={(e) => setSnoozeDate(e.target.value)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             />
           </div>
         </div>
@@ -549,7 +549,7 @@ export default function RiskPage() {
 function assigneeHint(team: TeamMember[]) {
   if (team.length > 0) return null
   return (
-    <p className="text-xs text-slate-500">
+    <p className="text-xs text-stone-500">
       No team members yet — add members in the Team page to enable risk assignment.
     </p>
   )

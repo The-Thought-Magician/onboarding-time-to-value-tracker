@@ -278,7 +278,7 @@ export default function TemplateEditorPage() {
   if (error && !template) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/templates" className="text-sm text-teal-400 hover:text-teal-300">
+        <Link href="/dashboard/templates" className="text-sm text-rose-400 hover:text-rose-300">
           ← Back to templates
         </Link>
         <EmptyState title="Could not load template" description={error} />
@@ -289,7 +289,7 @@ export default function TemplateEditorPage() {
   if (!template) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/templates" className="text-sm text-teal-400 hover:text-teal-300">
+        <Link href="/dashboard/templates" className="text-sm text-rose-400 hover:text-rose-300">
           ← Back to templates
         </Link>
         <EmptyState title="Template not found" />
@@ -300,7 +300,7 @@ export default function TemplateEditorPage() {
   return (
     <div className="space-y-6">
       <div>
-        <Link href="/dashboard/templates" className="text-sm text-teal-400 hover:text-teal-300">
+        <Link href="/dashboard/templates" className="text-sm text-rose-400 hover:text-rose-300">
           ← Back to templates
         </Link>
       </div>
@@ -312,12 +312,12 @@ export default function TemplateEditorPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-slate-100">{template.name}</h1>
+            <h1 className="text-2xl font-bold text-stone-100">{template.name}</h1>
             {template.is_default && <Badge tone="teal">Default</Badge>}
             <Badge tone={template.status === 'active' ? 'green' : 'slate'}>{template.status || 'draft'}</Badge>
             {template.version != null && <Badge tone="blue">v{template.version}</Badge>}
           </div>
-          {template.description && <p className="mt-1 max-w-2xl text-sm text-slate-400">{template.description}</p>}
+          {template.description && <p className="mt-1 max-w-2xl text-sm text-stone-400">{template.description}</p>}
         </div>
         <Button variant="secondary" onClick={() => setEditMeta(true)}>
           Edit template
@@ -334,8 +334,8 @@ export default function TemplateEditorPage() {
       <Card>
         <CardHeader className="flex items-center justify-between">
           <div>
-            <h2 className="text-base font-semibold text-slate-100">Milestones</h2>
-            <p className="text-xs text-slate-500">Ordered stages an account moves through. Use the arrows to reorder.</p>
+            <h2 className="text-base font-semibold text-stone-100">Milestones</h2>
+            <p className="text-xs text-stone-500">Ordered stages an account moves through. Use the arrows to reorder.</p>
           </div>
           <Button onClick={openCreate}>+ Add milestone</Button>
         </CardHeader>
@@ -351,24 +351,24 @@ export default function TemplateEditorPage() {
               {milestones.map((m, i) => (
                 <li
                   key={m.id}
-                  className="flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-4"
+                  className="flex items-start gap-3 rounded-xl border border-stone-800 bg-stone-900/60 p-4"
                 >
                   <div className="flex flex-col items-center gap-1 pt-0.5">
                     <button
                       onClick={() => move(i, -1)}
                       disabled={i === 0 || busy}
-                      className="text-slate-500 hover:text-teal-300 disabled:opacity-30"
+                      className="text-stone-500 hover:text-rose-300 disabled:opacity-30"
                       aria-label="Move up"
                     >
                       ▲
                     </button>
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-800 text-xs font-semibold text-teal-300">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-stone-800 text-xs font-semibold text-rose-300">
                       {i + 1}
                     </span>
                     <button
                       onClick={() => move(i, 1)}
                       disabled={i === milestones.length - 1 || busy}
-                      className="text-slate-500 hover:text-teal-300 disabled:opacity-30"
+                      className="text-stone-500 hover:text-rose-300 disabled:opacity-30"
                       aria-label="Move down"
                     >
                       ▼
@@ -376,22 +376,22 @@ export default function TemplateEditorPage() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-semibold text-slate-100">{m.name}</span>
+                      <span className="font-semibold text-stone-100">{m.name}</span>
                       {m.is_first_value && <Badge tone="teal">First value</Badge>}
                       {m.is_go_live && <Badge tone="green">Go-live</Badge>}
                       {m.category && <Badge tone="slate">{m.category}</Badge>}
                     </div>
-                    {m.description && <p className="mt-1 text-sm text-slate-400">{m.description}</p>}
-                    <div className="mt-2 flex flex-wrap gap-2 text-xs text-slate-400">
+                    {m.description && <p className="mt-1 text-sm text-stone-400">{m.description}</p>}
+                    <div className="mt-2 flex flex-wrap gap-2 text-xs text-stone-400">
                       {m.target_days != null && (
-                        <span className="rounded bg-slate-800 px-2 py-0.5">{m.target_days}d target</span>
+                        <span className="rounded bg-stone-800 px-2 py-0.5">{m.target_days}d target</span>
                       )}
-                      {m.weight != null && <span className="rounded bg-slate-800 px-2 py-0.5">weight {m.weight}</span>}
-                      {m.owner_role && <span className="rounded bg-slate-800 px-2 py-0.5">{m.owner_role}</span>}
+                      {m.weight != null && <span className="rounded bg-stone-800 px-2 py-0.5">weight {m.weight}</span>}
+                      {m.owner_role && <span className="rounded bg-stone-800 px-2 py-0.5">{m.owner_role}</span>}
                     </div>
                     {m.exit_criteria && (
-                      <p className="mt-2 text-xs text-slate-500">
-                        <span className="font-medium text-slate-400">Exit criteria:</span> {m.exit_criteria}
+                      <p className="mt-2 text-xs text-stone-500">
+                        <span className="font-medium text-stone-400">Exit criteria:</span> {m.exit_criteria}
                       </p>
                     )}
                   </div>
@@ -438,39 +438,39 @@ export default function TemplateEditorPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Name</label>
+            <label className="mb-1 block text-sm font-medium text-stone-300">Name</label>
             <input
               value={meta.name}
               onChange={(e) => setMeta({ ...meta, name: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Description</label>
+            <label className="mb-1 block text-sm font-medium text-stone-300">Description</label>
             <textarea
               value={meta.description}
               onChange={(e) => setMeta({ ...meta, description: e.target.value })}
               rows={2}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Total target days</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Total target days</label>
               <input
                 type="number"
                 min={0}
                 value={meta.total_target_days}
                 onChange={(e) => setMeta({ ...meta, total_target_days: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Status</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Status</label>
               <select
                 value={meta.status}
                 onChange={(e) => setMeta({ ...meta, status: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 <option value="draft">Draft</option>
                 <option value="active">Active</option>
@@ -505,11 +505,11 @@ export default function TemplateEditorPage() {
           )}
           {stages.length > 0 && (
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Stage (from library)</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Stage (from library)</label>
               <select
                 value={form.stage_id}
                 onChange={(e) => applyStage(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 <option value="">— Custom (no stage) —</option>
                 {stages.map((s) => (
@@ -521,95 +521,95 @@ export default function TemplateEditorPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Name</label>
+            <label className="mb-1 block text-sm font-medium text-stone-300">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
               placeholder="Kickoff call"
               autoFocus
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Description</label>
+            <label className="mb-1 block text-sm font-medium text-stone-300">Description</label>
             <textarea
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={2}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Category</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Category</label>
               <input
                 value={form.category}
                 onChange={(e) => setForm({ ...form, category: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
                 placeholder="Implementation"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Owner role</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Owner role</label>
               <input
                 value={form.owner_role}
                 onChange={(e) => setForm({ ...form, owner_role: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
                 placeholder="CSM"
               />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Target days</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Target days</label>
               <input
                 type="number"
                 min={0}
                 value={form.target_days}
                 onChange={(e) => setForm({ ...form, target_days: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
                 placeholder="5"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Weight</label>
+              <label className="mb-1 block text-sm font-medium text-stone-300">Weight</label>
               <input
                 type="number"
                 min={0}
                 step="0.1"
                 value={form.weight}
                 onChange={(e) => setForm({ ...form, weight: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
                 placeholder="1"
               />
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Exit criteria</label>
+            <label className="mb-1 block text-sm font-medium text-stone-300">Exit criteria</label>
             <textarea
               value={form.exit_criteria}
               onChange={(e) => setForm({ ...form, exit_criteria: e.target.value })}
               rows={2}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-100 focus:border-teal-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-stone-100 focus:border-rose-500 focus:outline-none"
               placeholder="What must be true to mark this complete"
             />
           </div>
           <div className="flex items-center gap-6">
-            <label className="flex items-center gap-2 text-sm text-slate-300">
+            <label className="flex items-center gap-2 text-sm text-stone-300">
               <input
                 type="checkbox"
                 checked={form.is_first_value}
                 onChange={(e) => setForm({ ...form, is_first_value: e.target.checked })}
-                className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-teal-500 focus:ring-teal-500"
+                className="h-4 w-4 rounded border-stone-600 bg-stone-800 text-rose-500 focus:ring-rose-500"
               />
               First-value milestone
             </label>
-            <label className="flex items-center gap-2 text-sm text-slate-300">
+            <label className="flex items-center gap-2 text-sm text-stone-300">
               <input
                 type="checkbox"
                 checked={form.is_go_live}
                 onChange={(e) => setForm({ ...form, is_go_live: e.target.checked })}
-                className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-teal-500 focus:ring-teal-500"
+                className="h-4 w-4 rounded border-stone-600 bg-stone-800 text-rose-500 focus:ring-rose-500"
               />
               Go-live milestone
             </label>

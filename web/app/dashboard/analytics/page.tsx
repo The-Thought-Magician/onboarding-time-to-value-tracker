@@ -176,8 +176,8 @@ export default function AnalyticsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Analytics</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-xl font-semibold text-stone-100">Analytics</h1>
+          <p className="mt-1 text-sm text-stone-400">
             Time-to-value distribution, cohort comparisons, stage funnel, and trend over time.
           </p>
         </div>
@@ -198,11 +198,11 @@ export default function AnalyticsPage() {
       {/* Filters */}
       <Card>
         <CardBody className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Filters</span>
+          <span className="text-xs font-medium uppercase tracking-wide text-stone-500">Filters</span>
           <select
             value={segmentFilter}
             onChange={(e) => setSegmentFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+            className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
           >
             <option value="">All segments</option>
             {segments.map((s) => (
@@ -214,7 +214,7 @@ export default function AnalyticsPage() {
           <select
             value={templateFilter}
             onChange={(e) => setTemplateFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+            className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
           >
             <option value="">All templates</option>
             {templates.map((t) => (
@@ -226,7 +226,7 @@ export default function AnalyticsPage() {
           <select
             value={planFilter}
             onChange={(e) => setPlanFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+            className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
           >
             <option value="">All plans</option>
             <option value="enterprise">Enterprise</option>
@@ -259,7 +259,7 @@ export default function AnalyticsPage() {
         <>
           {/* Percentile stat cards */}
           <div>
-            <h2 className="mb-3 text-sm font-semibold text-slate-200">Days to first value</h2>
+            <h2 className="mb-3 text-sm font-semibold text-stone-200">Days to first value</h2>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               <Stat label="Median (p50)" value={days(fv.median)} tone="teal" sub={fv.count != null ? `${fv.count} accounts` : undefined} />
               <Stat label="p75" value={days(fv.p75)} tone="amber" />
@@ -269,7 +269,7 @@ export default function AnalyticsPage() {
           </div>
 
           <div>
-            <h2 className="mb-3 text-sm font-semibold text-slate-200">Days to go-live</h2>
+            <h2 className="mb-3 text-sm font-semibold text-stone-200">Days to go-live</h2>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               <Stat label="Median (p50)" value={days(gl.median)} tone="teal" sub={gl.count != null ? `${gl.count} accounts` : undefined} />
               <Stat label="p75" value={days(gl.p75)} tone="amber" />
@@ -281,12 +281,12 @@ export default function AnalyticsPage() {
           {/* Trend chart */}
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-slate-200">TTV trend over time</h2>
-              <p className="mt-1 text-xs text-slate-500">Median days by month. Teal = first value, sky = go-live.</p>
+              <h2 className="text-sm font-semibold text-stone-200">TTV trend over time</h2>
+              <p className="mt-1 text-xs text-stone-500">Median days by month. Teal = first value, sky = go-live.</p>
             </CardHeader>
             <CardBody>
               {trend.length === 0 ? (
-                <p className="text-sm text-slate-500">No trend data for the current filters.</p>
+                <p className="text-sm text-stone-500">No trend data for the current filters.</p>
               ) : (
                 <>
                   <div className="flex items-end gap-2 overflow-x-auto pb-2" style={{ minHeight: 180 }}>
@@ -299,7 +299,7 @@ export default function AnalyticsPage() {
                         <div key={i} className="flex min-w-[44px] flex-1 flex-col items-center gap-1">
                           <div className="flex h-[150px] items-end gap-1">
                             <div
-                              className="w-3 rounded-t bg-teal-500/70"
+                              className="w-3 rounded-t bg-rose-500/70"
                               style={{ height: `${Math.max(fvH, fvv > 0 ? 3 : 0)}px` }}
                               title={`First value: ${days(fvv)}`}
                             />
@@ -309,14 +309,14 @@ export default function AnalyticsPage() {
                               title={`Go-live: ${days(glv)}`}
                             />
                           </div>
-                          <span className="whitespace-nowrap text-[10px] text-slate-500">{trendLabel(t)}</span>
+                          <span className="whitespace-nowrap text-[10px] text-stone-500">{trendLabel(t)}</span>
                         </div>
                       )
                     })}
                   </div>
-                  <div className="mt-3 flex gap-4 text-xs text-slate-400">
+                  <div className="mt-3 flex gap-4 text-xs text-stone-400">
                     <span className="flex items-center gap-1.5">
-                      <span className="h-2.5 w-2.5 rounded-sm bg-teal-500/70" /> First value
+                      <span className="h-2.5 w-2.5 rounded-sm bg-rose-500/70" /> First value
                     </span>
                     <span className="flex items-center gap-1.5">
                       <span className="h-2.5 w-2.5 rounded-sm bg-sky-500/70" /> Go-live
@@ -330,12 +330,12 @@ export default function AnalyticsPage() {
           {/* Stage funnel */}
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-slate-200">Stage funnel</h2>
-              <p className="mt-1 text-xs text-slate-500">Average days spent in each onboarding stage.</p>
+              <h2 className="text-sm font-semibold text-stone-200">Stage funnel</h2>
+              <p className="mt-1 text-xs text-stone-500">Average days spent in each onboarding stage.</p>
             </CardHeader>
             <CardBody>
               {funnel.length === 0 ? (
-                <p className="text-sm text-slate-500">No stage timing data yet.</p>
+                <p className="text-sm text-stone-500">No stage timing data yet.</p>
               ) : (
                 <div className="space-y-2.5">
                   {funnel.map((r, i) => {
@@ -343,19 +343,19 @@ export default function AnalyticsPage() {
                     const pct = Math.round((d / maxFunnel) * 100)
                     return (
                       <div key={r.stage_id ?? i} className="flex items-center gap-3">
-                        <div className="w-40 shrink-0 truncate text-sm text-slate-300" title={r.stage_name ?? r.name ?? ''}>
+                        <div className="w-40 shrink-0 truncate text-sm text-stone-300" title={r.stage_name ?? r.name ?? ''}>
                           {r.stage_name ?? r.name ?? `Stage ${i + 1}`}
                         </div>
-                        <div className="h-6 flex-1 overflow-hidden rounded-md bg-slate-800">
+                        <div className="h-6 flex-1 overflow-hidden rounded-md bg-stone-800">
                           <div
-                            className="flex h-full items-center justify-end bg-teal-500/60 pr-2"
+                            className="flex h-full items-center justify-end bg-rose-500/60 pr-2"
                             style={{ width: `${Math.max(pct, d > 0 ? 5 : 0)}%` }}
                           >
-                            {pct > 25 && <span className="text-[10px] font-medium text-slate-950">{days(d)}</span>}
+                            {pct > 25 && <span className="text-[10px] font-medium text-stone-950">{days(d)}</span>}
                           </div>
                         </div>
-                        {pct <= 25 && <div className="w-12 shrink-0 text-right text-xs tabular-nums text-slate-400">{days(d)}</div>}
-                        <div className="w-16 shrink-0 text-right text-xs tabular-nums text-slate-500">
+                        {pct <= 25 && <div className="w-12 shrink-0 text-right text-xs tabular-nums text-stone-400">{days(d)}</div>}
+                        <div className="w-16 shrink-0 text-right text-xs tabular-nums text-stone-500">
                           {r.count != null ? `${r.count}` : ''}
                         </div>
                       </div>
@@ -369,11 +369,11 @@ export default function AnalyticsPage() {
           {/* Cohorts table */}
           <Card>
             <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-              <h2 className="text-sm font-semibold text-slate-200">Cohorts</h2>
+              <h2 className="text-sm font-semibold text-stone-200">Cohorts</h2>
               <select
                 value={cohortBasis}
                 onChange={(e) => setCohortBasis(e.target.value)}
-                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+                className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 {COHORT_BASIS.map((b) => (
                   <option key={b.value} value={b.value}>
@@ -400,9 +400,9 @@ export default function AnalyticsPage() {
                   <TBody>
                     {cohorts.map((c, i) => (
                       <TR key={i}>
-                        <TD className="font-medium text-slate-100">{cohortLabel(c)}</TD>
+                        <TD className="font-medium text-stone-100">{cohortLabel(c)}</TD>
                         <TD className="text-right tabular-nums">{c.count ?? '—'}</TD>
-                        <TD className="text-right tabular-nums text-teal-300">{days(cohortFv(c))}</TD>
+                        <TD className="text-right tabular-nums text-rose-300">{days(cohortFv(c))}</TD>
                         <TD className="text-right tabular-nums text-sky-300">{days(cohortGl(c))}</TD>
                       </TR>
                     ))}

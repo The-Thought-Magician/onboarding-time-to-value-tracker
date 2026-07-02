@@ -176,8 +176,8 @@ export default function StallDetectorPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Stall Detector</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-xl font-semibold text-stone-100">Stall Detector</h1>
+          <p className="mt-1 text-sm text-stone-400">
             Accounts stuck in onboarding, ranked by ARR-weighted days overdue. Triage the biggest revenue risks first.
           </p>
         </div>
@@ -203,11 +203,11 @@ export default function StallDetectorPage() {
 
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">ARR-at-risk by severity band</h2>
+          <h2 className="text-sm font-semibold text-stone-200">ARR-at-risk by severity band</h2>
         </CardHeader>
         <CardBody>
           {bands.length === 0 ? (
-            <p className="text-sm text-slate-500">No stalled accounts in any band.</p>
+            <p className="text-sm text-stone-500">No stalled accounts in any band.</p>
           ) : (
             <div className="space-y-3">
               {bands.map((b) => {
@@ -219,7 +219,7 @@ export default function StallDetectorPage() {
                     <div className="w-20 shrink-0">
                       <Badge tone={SEV_TONE[sev] ?? 'slate'}>{sev}</Badge>
                     </div>
-                    <div className="h-6 flex-1 overflow-hidden rounded-md bg-slate-800">
+                    <div className="h-6 flex-1 overflow-hidden rounded-md bg-stone-800">
                       <div
                         className={`h-full ${
                           sev === 'critical'
@@ -228,13 +228,13 @@ export default function StallDetectorPage() {
                             ? 'bg-amber-500/70'
                             : sev === 'medium'
                             ? 'bg-sky-500/70'
-                            : 'bg-slate-500/70'
+                            : 'bg-stone-500/70'
                         }`}
                         style={{ width: `${Math.max(pct, arr > 0 ? 4 : 0)}%` }}
                       />
                     </div>
-                    <div className="w-28 shrink-0 text-right text-sm tabular-nums text-slate-300">{fmtArr(arr)}</div>
-                    <div className="w-16 shrink-0 text-right text-xs tabular-nums text-slate-500">{b.count ?? 0} acct</div>
+                    <div className="w-28 shrink-0 text-right text-sm tabular-nums text-stone-300">{fmtArr(arr)}</div>
+                    <div className="w-16 shrink-0 text-right text-xs tabular-nums text-stone-500">{b.count ?? 0} acct</div>
                   </div>
                 )
               })}
@@ -249,7 +249,7 @@ export default function StallDetectorPage() {
             <select
               value={segmentFilter}
               onChange={(e) => setSegmentFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="">All segments</option>
               {segments.map((s) => (
@@ -261,7 +261,7 @@ export default function StallDetectorPage() {
             <select
               value={managerFilter}
               onChange={(e) => setManagerFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="">All managers</option>
               {team.map((m) => (
@@ -273,7 +273,7 @@ export default function StallDetectorPage() {
             <select
               value={severityFilter}
               onChange={(e) => setSeverityFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-teal-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="">All severities</option>
               {SEVERITIES.map((s) => (
@@ -296,7 +296,7 @@ export default function StallDetectorPage() {
               </Button>
             )}
           </div>
-          <span className="text-xs text-slate-500">{ranked.length} stalled</span>
+          <span className="text-xs text-stone-500">{ranked.length} stalled</span>
         </CardHeader>
         <CardBody className="p-0">
           {rows.length === 0 ? (
@@ -331,23 +331,23 @@ export default function StallDetectorPage() {
                   const name = r.account_name ?? 'Untitled account'
                   return (
                     <TR key={r.tracker_id ?? r.account_id ?? i}>
-                      <TD className="text-right tabular-nums text-slate-500">{i + 1}</TD>
-                      <TD className="font-medium text-slate-100">
+                      <TD className="text-right tabular-nums text-stone-500">{i + 1}</TD>
+                      <TD className="font-medium text-stone-100">
                         {r.tracker_id ? (
-                          <Link href={`/dashboard/trackers/${r.tracker_id}`} className="hover:text-teal-300">
+                          <Link href={`/dashboard/trackers/${r.tracker_id}`} className="hover:text-rose-300">
                             {name}
                           </Link>
                         ) : (
                           name
                         )}
                       </TD>
-                      <TD>{r.current_milestone ?? r.stage_name ?? <span className="text-slate-600">—</span>}</TD>
-                      <TD>{r.segment_name ?? <span className="text-slate-600">—</span>}</TD>
-                      <TD>{r.manager_name ?? <span className="text-slate-600">Unassigned</span>}</TD>
+                      <TD>{r.current_milestone ?? r.stage_name ?? <span className="text-stone-600">—</span>}</TD>
+                      <TD>{r.segment_name ?? <span className="text-stone-600">—</span>}</TD>
+                      <TD>{r.manager_name ?? <span className="text-stone-600">Unassigned</span>}</TD>
                       <TD className="text-right tabular-nums text-amber-300">{daysOverdueOf(r)}d</TD>
-                      <TD className="text-right tabular-nums font-medium text-slate-100">{fmtArr(arrAtRiskOf(r))}</TD>
-                      <TD>{sev ? <Badge tone={SEV_TONE[sev] ?? 'slate'}>{sev}</Badge> : <span className="text-slate-600">—</span>}</TD>
-                      <TD className="text-slate-400">{fmtDate(r.last_activity_at)}</TD>
+                      <TD className="text-right tabular-nums font-medium text-stone-100">{fmtArr(arrAtRiskOf(r))}</TD>
+                      <TD>{sev ? <Badge tone={SEV_TONE[sev] ?? 'slate'}>{sev}</Badge> : <span className="text-stone-600">—</span>}</TD>
+                      <TD className="text-stone-400">{fmtDate(r.last_activity_at)}</TD>
                     </TR>
                   )
                 })}
